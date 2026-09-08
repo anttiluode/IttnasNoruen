@@ -1,0 +1,1175 @@
+{
+  "gate": 7,
+  "status": "software_measured_update_transfer_not_local_neuronal_plasticity",
+  "checks": {
+    "measured_bank_is_respected": true,
+    "finite_budget": true,
+    "some_target_progress": true
+  },
+  "pass": true,
+  "summaries": {
+    "guard": {
+      "remaining_error": 0.046546167171354146,
+      "max_protected_drift": 0.0009879291436064956,
+      "max_unprotected_probe_drift": 0.18045523787688067,
+      "scalar_calls": 3288.3333333333335,
+      "rejected_candidates": 59.333333333333336,
+      "max_parameter_norm": 1.5129062874466508
+    },
+    "tangent_only": {
+      "remaining_error": 0.024177184683123798,
+      "max_protected_drift": 0.03211933110949309,
+      "max_unprotected_probe_drift": 0.14864960790462037,
+      "scalar_calls": 955.0,
+      "rejected_candidates": 9.0,
+      "max_parameter_norm": 2.0392558733567374
+    },
+    "unprotected": {
+      "remaining_error": -1.0362081563168127e-14,
+      "max_protected_drift": 0.08736130272138798,
+      "max_unprotected_probe_drift": 0.08209399511480757,
+      "scalar_calls": 400.0,
+      "rejected_candidates": 0.0,
+      "max_parameter_norm": 0.025068999544344873
+    },
+    "frozen": {
+      "remaining_error": 0.08000000000000007,
+      "max_protected_drift": 0.0,
+      "max_unprotected_probe_drift": 0.0,
+      "scalar_calls": 5.0,
+      "rejected_candidates": 0.0,
+      "max_parameter_norm": 0.0
+    }
+  },
+  "runs": [
+    {
+      "seed": 11,
+      "method": "guard",
+      "new_before": 2.668741509599864,
+      "target": 2.748741509599864,
+      "new_after": 2.741646400278917,
+      "remaining_error": 0.007095109320947035,
+      "max_protected_drift": 0.0009729428892235603,
+      "max_unprotected_probe_drift": 0.38989457816981155,
+      "max_parameter_norm": 1.5320660131336061,
+      "scalar_calls": 4310,
+      "call_budget": 5000,
+      "rejected_candidates": 81,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 2.6708999055186595,
+          "old_max_drift": 0.0005367979331745154,
+          "calls": 145,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 2.6728707977886668,
+          "old_max_drift": 0.000584397305420481,
+          "calls": 285,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 2.6750370466100444,
+          "old_max_drift": 0.0006308648602932898,
+          "calls": 425,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 2.6774314397476964,
+          "old_max_drift": 0.0006907972608778401,
+          "calls": 565,
+          "status": "accepted"
+        },
+        {
+          "step": 4,
+          "new_response": 2.6800771699107386,
+          "old_max_drift": 0.000766266779106406,
+          "calls": 705,
+          "status": "accepted"
+        },
+        {
+          "step": 5,
+          "new_response": 2.682998153721136,
+          "old_max_drift": 0.0008595464335026115,
+          "calls": 845,
+          "status": "accepted"
+        },
+        {
+          "step": 6,
+          "new_response": 2.6862182369565453,
+          "old_max_drift": 0.0009729428892235603,
+          "calls": 985,
+          "status": "accepted"
+        },
+        {
+          "step": 7,
+          "new_response": 2.687436284973014,
+          "old_max_drift": 0.0002894491599745308,
+          "calls": 1130,
+          "status": "accepted"
+        },
+        {
+          "step": 8,
+          "new_response": 2.689201130556238,
+          "old_max_drift": 0.0002894389657703833,
+          "calls": 1275,
+          "status": "accepted"
+        },
+        {
+          "step": 9,
+          "new_response": 2.6910641656967864,
+          "old_max_drift": 0.00030979457046864667,
+          "calls": 1420,
+          "status": "accepted"
+        },
+        {
+          "step": 10,
+          "new_response": 2.6930121798534956,
+          "old_max_drift": 0.00033176920278288335,
+          "calls": 1565,
+          "status": "accepted"
+        },
+        {
+          "step": 11,
+          "new_response": 2.6950471752448935,
+          "old_max_drift": 0.00035541827388030356,
+          "calls": 1710,
+          "status": "accepted"
+        },
+        {
+          "step": 12,
+          "new_response": 2.6971708343063066,
+          "old_max_drift": 0.00038076986458612794,
+          "calls": 1855,
+          "status": "accepted"
+        },
+        {
+          "step": 13,
+          "new_response": 2.6993845027453474,
+          "old_max_drift": 0.00040784011842021073,
+          "calls": 2000,
+          "status": "accepted"
+        },
+        {
+          "step": 14,
+          "new_response": 2.7016891324404373,
+          "old_max_drift": 0.00043662731459903625,
+          "calls": 2145,
+          "status": "accepted"
+        },
+        {
+          "step": 15,
+          "new_response": 2.704085221144653,
+          "old_max_drift": 0.0004671077958362524,
+          "calls": 2290,
+          "status": "accepted"
+        },
+        {
+          "step": 16,
+          "new_response": 2.7065727460369264,
+          "old_max_drift": 0.0004992309733813372,
+          "calls": 2435,
+          "status": "accepted"
+        },
+        {
+          "step": 17,
+          "new_response": 2.709151090047235,
+          "old_max_drift": 0.0005329132069249454,
+          "calls": 2580,
+          "status": "accepted"
+        },
+        {
+          "step": 18,
+          "new_response": 2.7118189597773874,
+          "old_max_drift": 0.0005680303123201114,
+          "calls": 2725,
+          "status": "accepted"
+        },
+        {
+          "step": 19,
+          "new_response": 2.714574293915184,
+          "old_max_drift": 0.0006044084988019449,
+          "calls": 2870,
+          "status": "accepted"
+        },
+        {
+          "step": 20,
+          "new_response": 2.717414161422986,
+          "old_max_drift": 0.000641813613466713,
+          "calls": 3015,
+          "status": "accepted"
+        },
+        {
+          "step": 21,
+          "new_response": 2.720334649554429,
+          "old_max_drift": 0.000679938794503343,
+          "calls": 3160,
+          "status": "accepted"
+        },
+        {
+          "step": 22,
+          "new_response": 2.723330743202643,
+          "old_max_drift": 0.0007183909565617874,
+          "calls": 3305,
+          "status": "accepted"
+        },
+        {
+          "step": 23,
+          "new_response": 2.7263961993950563,
+          "old_max_drift": 0.0007566771111156001,
+          "calls": 3450,
+          "status": "accepted"
+        },
+        {
+          "step": 24,
+          "new_response": 2.7292380283929414,
+          "old_max_drift": 0.0006924187636663248,
+          "calls": 3595,
+          "status": "accepted"
+        },
+        {
+          "step": 25,
+          "new_response": 2.7316378718457655,
+          "old_max_drift": 0.0005326000845933265,
+          "calls": 3740,
+          "status": "accepted"
+        },
+        {
+          "step": 26,
+          "new_response": 2.733743249588195,
+          "old_max_drift": 0.00040860165903433554,
+          "calls": 3885,
+          "status": "accepted"
+        },
+        {
+          "step": 27,
+          "new_response": 2.735591737094297,
+          "old_max_drift": 0.00031388976877444463,
+          "calls": 4030,
+          "status": "accepted"
+        },
+        {
+          "step": 28,
+          "new_response": 2.7394401334225638,
+          "old_max_drift": 0.0009569709485655054,
+          "calls": 4170,
+          "status": "accepted"
+        },
+        {
+          "step": 29,
+          "new_response": 2.741646400278917,
+          "old_max_drift": 0.0005564578640111506,
+          "calls": 4310,
+          "status": "accepted"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 11,
+      "method": "tangent_only",
+      "new_before": 2.668741509599864,
+      "target": 2.748741509599864,
+      "new_after": 2.750162508840712,
+      "remaining_error": -0.00142099924084782,
+      "max_protected_drift": 0.03388811677305892,
+      "max_unprotected_probe_drift": 0.3205027601304282,
+      "max_parameter_norm": 1.3407651683008832,
+      "scalar_calls": 695,
+      "call_budget": 5000,
+      "rejected_candidates": 9,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "no_acceptable_step_observed"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 2.6831187385616433,
+          "old_max_drift": 0.008671614959612217,
+          "calls": 135,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 2.6975377652673,
+          "old_max_drift": 0.013006262578691086,
+          "calls": 265,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 2.7194149941677233,
+          "old_max_drift": 0.021002513995116434,
+          "calls": 395,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 2.750162508840712,
+          "old_max_drift": 0.03388811677305892,
+          "calls": 525,
+          "status": "accepted"
+        },
+        {
+          "step": 4,
+          "new_response": 2.750162508840712,
+          "old_max_drift": 0.03388811677305892,
+          "calls": 695,
+          "status": "no_acceptable_step_observed"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 11,
+      "method": "unprotected",
+      "new_before": 2.668741509599864,
+      "target": 2.748741509599864,
+      "new_after": 2.7487415095998906,
+      "remaining_error": -2.6645352591003757e-14,
+      "max_protected_drift": 0.09454712697031464,
+      "max_unprotected_probe_drift": 0.08317182842897175,
+      "max_parameter_norm": 0.030499125166449047,
+      "scalar_calls": 400,
+      "call_budget": 5000,
+      "rejected_candidates": 0,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "target_met"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 2.7500797177959972,
+          "old_max_drift": 0.09454712697031464,
+          "calls": 135,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 2.748741869287004,
+          "old_max_drift": 0.09299410345503212,
+          "calls": 265,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 2.7487415095998906,
+          "old_max_drift": 0.0929936859077447,
+          "calls": 395,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 2.7487415095998906,
+          "old_max_drift": 0.0929936859077447,
+          "calls": 400,
+          "status": "target_met"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 11,
+      "method": "frozen",
+      "new_before": 2.668741509599864,
+      "target": 2.748741509599864,
+      "new_after": 2.668741509599864,
+      "remaining_error": 0.08000000000000007,
+      "max_protected_drift": 0.0,
+      "max_unprotected_probe_drift": 0.0,
+      "max_parameter_norm": 0.0,
+      "scalar_calls": 5,
+      "call_budget": 5000,
+      "rejected_candidates": 0,
+      "statuses": [],
+      "trajectory": [],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 23,
+      "method": "guard",
+      "new_before": 3.685638458357914,
+      "target": 3.765638458357914,
+      "new_after": 3.694864411395043,
+      "remaining_error": 0.07077404696287104,
+      "max_protected_drift": 0.0009963510644874773,
+      "max_unprotected_probe_drift": 0.09112738895234251,
+      "max_parameter_norm": 1.6976003573976726,
+      "scalar_calls": 3280,
+      "call_budget": 5000,
+      "rejected_candidates": 58,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "no_acceptable_step_observed"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 3.68631315858303,
+          "old_max_drift": 0.0002911893467554272,
+          "calls": 150,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 3.6866512776377403,
+          "old_max_drift": 0.0002750375976541264,
+          "calls": 295,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 3.686986617360603,
+          "old_max_drift": 0.00026655700836641927,
+          "calls": 440,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 3.6873123833675514,
+          "old_max_drift": 0.00025900095228159614,
+          "calls": 585,
+          "status": "accepted"
+        },
+        {
+          "step": 4,
+          "new_response": 3.687628738227227,
+          "old_max_drift": 0.0002522345081565902,
+          "calls": 730,
+          "status": "accepted"
+        },
+        {
+          "step": 5,
+          "new_response": 3.6890333075981303,
+          "old_max_drift": 0.0009963510644874773,
+          "calls": 870,
+          "status": "accepted"
+        },
+        {
+          "step": 6,
+          "new_response": 3.689539842312441,
+          "old_max_drift": 0.0009281125534621459,
+          "calls": 1010,
+          "status": "accepted"
+        },
+        {
+          "step": 7,
+          "new_response": 3.6900502756331384,
+          "old_max_drift": 0.0008974228974500953,
+          "calls": 1150,
+          "status": "accepted"
+        },
+        {
+          "step": 8,
+          "new_response": 3.6905340744973376,
+          "old_max_drift": 0.0008737190598173683,
+          "calls": 1290,
+          "status": "accepted"
+        },
+        {
+          "step": 9,
+          "new_response": 3.690991859413599,
+          "old_max_drift": 0.0008560005124320647,
+          "calls": 1430,
+          "status": "accepted"
+        },
+        {
+          "step": 10,
+          "new_response": 3.69142463334071,
+          "old_max_drift": 0.0008436778631359942,
+          "calls": 1570,
+          "status": "accepted"
+        },
+        {
+          "step": 11,
+          "new_response": 3.691833498578937,
+          "old_max_drift": 0.0008362936592116732,
+          "calls": 1710,
+          "status": "accepted"
+        },
+        {
+          "step": 12,
+          "new_response": 3.69221961673382,
+          "old_max_drift": 0.0008334807306491498,
+          "calls": 1850,
+          "status": "accepted"
+        },
+        {
+          "step": 13,
+          "new_response": 3.6925841791303817,
+          "old_max_drift": 0.0008349343199327564,
+          "calls": 1990,
+          "status": "accepted"
+        },
+        {
+          "step": 14,
+          "new_response": 3.6929283851696186,
+          "old_max_drift": 0.0008403939433425656,
+          "calls": 2130,
+          "status": "accepted"
+        },
+        {
+          "step": 15,
+          "new_response": 3.6932534262127485,
+          "old_max_drift": 0.000849631556263386,
+          "calls": 2270,
+          "status": "accepted"
+        },
+        {
+          "step": 16,
+          "new_response": 3.693560473543637,
+          "old_max_drift": 0.0008624438924238476,
+          "calls": 2410,
+          "status": "accepted"
+        },
+        {
+          "step": 17,
+          "new_response": 3.6938506692676327,
+          "old_max_drift": 0.0008786474006692302,
+          "calls": 2550,
+          "status": "accepted"
+        },
+        {
+          "step": 18,
+          "new_response": 3.6941251193820484,
+          "old_max_drift": 0.0008980747584912407,
+          "calls": 2690,
+          "status": "accepted"
+        },
+        {
+          "step": 19,
+          "new_response": 3.6943848884668435,
+          "old_max_drift": 0.0009205722709704212,
+          "calls": 2830,
+          "status": "accepted"
+        },
+        {
+          "step": 20,
+          "new_response": 3.694630995646984,
+          "old_max_drift": 0.000945997755434469,
+          "calls": 2970,
+          "status": "accepted"
+        },
+        {
+          "step": 21,
+          "new_response": 3.694864411395043,
+          "old_max_drift": 0.0009742184995569225,
+          "calls": 3110,
+          "status": "accepted"
+        },
+        {
+          "step": 22,
+          "new_response": 3.694864411395043,
+          "old_max_drift": 0.0009742184995569225,
+          "calls": 3280,
+          "status": "no_acceptable_step_observed"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 23,
+      "method": "tangent_only",
+      "new_before": 3.685638458357914,
+      "target": 3.765638458357914,
+      "new_after": 3.708288148417165,
+      "remaining_error": 0.05735030994074908,
+      "max_protected_drift": 0.018909096878547693,
+      "max_unprotected_probe_drift": 0.04990021816484935,
+      "max_parameter_norm": 0.35,
+      "scalar_calls": 305,
+      "call_budget": 5000,
+      "rejected_candidates": 9,
+      "statuses": [
+        "accepted",
+        "no_acceptable_step_observed"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 3.708288148417165,
+          "old_max_drift": 0.018909096878547693,
+          "calls": 135,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 3.708288148417165,
+          "old_max_drift": 0.018909096878547693,
+          "calls": 305,
+          "status": "no_acceptable_step_observed"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 23,
+      "method": "unprotected",
+      "new_before": 3.685638458357914,
+      "target": 3.765638458357914,
+      "new_after": 3.7656384583579143,
+      "remaining_error": -4.440892098500626e-16,
+      "max_protected_drift": 0.07713746777372865,
+      "max_unprotected_probe_drift": 0.07707690706476722,
+      "max_parameter_norm": 0.022466587346468822,
+      "scalar_calls": 400,
+      "call_budget": 5000,
+      "rejected_candidates": 0,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "target_met"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 3.766584910354045,
+          "old_max_drift": 0.07713746777372865,
+          "calls": 135,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 3.7656385870052294,
+          "old_max_drift": 0.07623563513619835,
+          "calls": 265,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 3.7656384583579143,
+          "old_max_drift": 0.0762355125372105,
+          "calls": 395,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 3.7656384583579143,
+          "old_max_drift": 0.0762355125372105,
+          "calls": 400,
+          "status": "target_met"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 23,
+      "method": "frozen",
+      "new_before": 3.685638458357914,
+      "target": 3.765638458357914,
+      "new_after": 3.685638458357914,
+      "remaining_error": 0.08000000000000007,
+      "max_protected_drift": 0.0,
+      "max_unprotected_probe_drift": 0.0,
+      "max_parameter_norm": 0.0,
+      "scalar_calls": 5,
+      "call_budget": 5000,
+      "rejected_candidates": 0,
+      "statuses": [],
+      "trajectory": [],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 47,
+      "method": "guard",
+      "new_before": 3.671752962605262,
+      "target": 3.751752962605262,
+      "new_after": 3.6899836173750176,
+      "remaining_error": 0.061769345230244355,
+      "max_protected_drift": 0.000994493477108449,
+      "max_unprotected_probe_drift": 0.06034374650848795,
+      "max_parameter_norm": 1.3090524918086743,
+      "scalar_calls": 2275,
+      "call_budget": 5000,
+      "rejected_candidates": 39,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "no_acceptable_step_observed"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 3.674462053482721,
+          "old_max_drift": 0.0007376927931970201,
+          "calls": 145,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 3.6761880519144845,
+          "old_max_drift": 0.0007130046708150317,
+          "calls": 285,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 3.677799043899114,
+          "old_max_drift": 0.0007129771193543633,
+          "calls": 425,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 3.6792885353324216,
+          "old_max_drift": 0.0007180193908764565,
+          "calls": 565,
+          "status": "accepted"
+        },
+        {
+          "step": 4,
+          "new_response": 3.680666541783882,
+          "old_max_drift": 0.000727558663023764,
+          "calls": 705,
+          "status": "accepted"
+        },
+        {
+          "step": 5,
+          "new_response": 3.681942113823729,
+          "old_max_drift": 0.0007410390265372158,
+          "calls": 845,
+          "status": "accepted"
+        },
+        {
+          "step": 6,
+          "new_response": 3.683123559248067,
+          "old_max_drift": 0.0007580380662046693,
+          "calls": 985,
+          "status": "accepted"
+        },
+        {
+          "step": 7,
+          "new_response": 3.6842185074786875,
+          "old_max_drift": 0.0007782329610224181,
+          "calls": 1125,
+          "status": "accepted"
+        },
+        {
+          "step": 8,
+          "new_response": 3.68523396672898,
+          "old_max_drift": 0.0008013770847377089,
+          "calls": 1265,
+          "status": "accepted"
+        },
+        {
+          "step": 9,
+          "new_response": 3.686176375136752,
+          "old_max_drift": 0.0008272831325983887,
+          "calls": 1405,
+          "status": "accepted"
+        },
+        {
+          "step": 10,
+          "new_response": 3.6870516471673334,
+          "old_max_drift": 0.0008558106600204951,
+          "calls": 1545,
+          "status": "accepted"
+        },
+        {
+          "step": 11,
+          "new_response": 3.6878652161045027,
+          "old_max_drift": 0.0008868567151258944,
+          "calls": 1685,
+          "status": "accepted"
+        },
+        {
+          "step": 12,
+          "new_response": 3.688622073022505,
+          "old_max_drift": 0.0009203484361526293,
+          "calls": 1825,
+          "status": "accepted"
+        },
+        {
+          "step": 13,
+          "new_response": 3.689326802851763,
+          "old_max_drift": 0.0009562372004294772,
+          "calls": 1965,
+          "status": "accepted"
+        },
+        {
+          "step": 14,
+          "new_response": 3.6899836173750176,
+          "old_max_drift": 0.000994493477108449,
+          "calls": 2105,
+          "status": "accepted"
+        },
+        {
+          "step": 15,
+          "new_response": 3.6899836173750176,
+          "old_max_drift": 0.000994493477108449,
+          "calls": 2275,
+          "status": "no_acceptable_step_observed"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 47,
+      "method": "tangent_only",
+      "new_before": 3.671752962605262,
+      "target": 3.751752962605262,
+      "new_after": 3.735150719255792,
+      "remaining_error": 0.016602243349470136,
+      "max_protected_drift": 0.04356077967687266,
+      "max_unprotected_probe_drift": 0.07554584541858356,
+      "max_parameter_norm": 4.427002451769329,
+      "scalar_calls": 1865,
+      "call_budget": 5000,
+      "rejected_candidates": 9,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "accepted",
+        "no_acceptable_step_observed"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 3.691270704529063,
+          "old_max_drift": 0.01207454746212644,
+          "calls": 135,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 3.6946120525191612,
+          "old_max_drift": 0.01119722394916689,
+          "calls": 265,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 3.6991823919037876,
+          "old_max_drift": 0.012760272921728877,
+          "calls": 395,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 3.7033256548751985,
+          "old_max_drift": 0.01477714086174764,
+          "calls": 525,
+          "status": "accepted"
+        },
+        {
+          "step": 4,
+          "new_response": 3.707310200009999,
+          "old_max_drift": 0.01730210059562598,
+          "calls": 655,
+          "status": "accepted"
+        },
+        {
+          "step": 5,
+          "new_response": 3.711288078183278,
+          "old_max_drift": 0.020327565489830945,
+          "calls": 785,
+          "status": "accepted"
+        },
+        {
+          "step": 6,
+          "new_response": 3.7153709954579446,
+          "old_max_drift": 0.02384815640827931,
+          "calls": 915,
+          "status": "accepted"
+        },
+        {
+          "step": 7,
+          "new_response": 3.7195876963298846,
+          "old_max_drift": 0.02779919251463081,
+          "calls": 1045,
+          "status": "accepted"
+        },
+        {
+          "step": 8,
+          "new_response": 3.723844950908317,
+          "old_max_drift": 0.03200332198844702,
+          "calls": 1175,
+          "status": "accepted"
+        },
+        {
+          "step": 9,
+          "new_response": 3.7279068787633225,
+          "old_max_drift": 0.036140951745724514,
+          "calls": 1305,
+          "status": "accepted"
+        },
+        {
+          "step": 10,
+          "new_response": 3.7314159459217815,
+          "old_max_drift": 0.03976951176759336,
+          "calls": 1435,
+          "status": "accepted"
+        },
+        {
+          "step": 11,
+          "new_response": 3.7339596851613126,
+          "old_max_drift": 0.04239527540826327,
+          "calls": 1565,
+          "status": "accepted"
+        },
+        {
+          "step": 12,
+          "new_response": 3.735150719255792,
+          "old_max_drift": 0.04356077967687266,
+          "calls": 1695,
+          "status": "accepted"
+        },
+        {
+          "step": 13,
+          "new_response": 3.735150719255792,
+          "old_max_drift": 0.04356077967687266,
+          "calls": 1865,
+          "status": "no_acceptable_step_observed"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 47,
+      "method": "unprotected",
+      "new_before": 3.671752962605262,
+      "target": 3.751752962605262,
+      "new_after": 3.751752962605266,
+      "remaining_error": -3.9968028886505635e-15,
+      "max_protected_drift": 0.09039931342012064,
+      "max_unprotected_probe_drift": 0.08603324985068372,
+      "max_parameter_norm": 0.022241286120116756,
+      "scalar_calls": 400,
+      "call_budget": 5000,
+      "rejected_candidates": 0,
+      "statuses": [
+        "accepted",
+        "accepted",
+        "accepted",
+        "target_met"
+      ],
+      "trajectory": [
+        {
+          "step": 0,
+          "new_response": 3.7527194895804254,
+          "old_max_drift": 0.09039931342012064,
+          "calls": 135,
+          "status": "accepted"
+        },
+        {
+          "step": 1,
+          "new_response": 3.7517530996465185,
+          "old_max_drift": 0.08932080876200921,
+          "calls": 265,
+          "status": "accepted"
+        },
+        {
+          "step": 2,
+          "new_response": 3.751752962605266,
+          "old_max_drift": 0.08932065582125048,
+          "calls": 395,
+          "status": "accepted"
+        },
+        {
+          "step": 3,
+          "new_response": 3.751752962605266,
+          "old_max_drift": 0.08932065582125048,
+          "calls": 400,
+          "status": "target_met"
+        }
+      ],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    },
+    {
+      "seed": 47,
+      "method": "frozen",
+      "new_before": 3.671752962605262,
+      "target": 3.751752962605262,
+      "new_after": 3.671752962605262,
+      "remaining_error": 0.08000000000000007,
+      "max_protected_drift": 0.0,
+      "max_unprotected_probe_drift": 0.0,
+      "max_parameter_norm": 0.0,
+      "scalar_calls": 5,
+      "call_budget": 5000,
+      "rejected_candidates": 0,
+      "statuses": [],
+      "trajectory": [],
+      "resources": {
+        "material_parameters": 12,
+        "protected_references": 4,
+        "reference_target_tolerance_scalars": 8,
+        "measured_sensitivity_workspace_scalars": 60,
+        "stimulus_library_scalars": 117,
+        "note": "query IDs, callback weights and candidate evaluation capability are additional declared software support"
+      }
+    }
+  ],
+  "limitations": [
+    "deterministic replay with reset fast state for each measured response",
+    "candidate parameters can be evaluated without committing live material",
+    "only four retained responses are protected; held-out behavior is separately evaluated",
+    "finite differences measure the current response geometry, not a universal model",
+    "Gate 6 temporal integration and this coupled model are separate experiments"
+  ]
+}
