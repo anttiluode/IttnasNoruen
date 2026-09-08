@@ -1,0 +1,1402 @@
+{
+  "status": "real_data_software_adapter_demo_not_a_continual_learning_benchmark_victory",
+  "dataset": "scikit-learn bundled UCI optical handwritten digits",
+  "source": "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html",
+  "protocol": "disjoint base-train/calibration/test split; 24 hidden biases; changed contrast .55*x+.22; ten calibration anchors; fixed 24-step/15000-call ceiling",
+  "checks": {
+    "anchor_contract": true,
+    "finite_measurement_budget": true
+  },
+  "pass": true,
+  "summaries": {
+    "guard": {
+      "old_test_accuracy_before": 0.9583333333333334,
+      "old_test_accuracy_after": 0.9564814814814815,
+      "changed_test_accuracy_before": 0.924074074074074,
+      "changed_test_accuracy_after": 0.924074074074074,
+      "adaptation_probability_before": 0.9238016985235794,
+      "adaptation_probability_after": 0.9565868050065734,
+      "max_retained_anchor_drift": 2.048516390370144e-06,
+      "heldout_mean_probability_drift": 0.013829037684739387,
+      "heldout_max_probability_drift": 0.820008193972908,
+      "scalar_calls": 10295.0,
+      "model_example_evaluations": 69200.0
+    },
+    "tangent_only": {
+      "old_test_accuracy_before": 0.9583333333333334,
+      "old_test_accuracy_after": 0.9564814814814815,
+      "changed_test_accuracy_before": 0.924074074074074,
+      "changed_test_accuracy_after": 0.924074074074074,
+      "adaptation_probability_before": 0.9238016985235794,
+      "adaptation_probability_after": 0.9565868050065734,
+      "max_retained_anchor_drift": 2.048516390370144e-06,
+      "heldout_mean_probability_drift": 0.013829037684739387,
+      "heldout_max_probability_drift": 0.820008193972908,
+      "scalar_calls": 10295.0,
+      "model_example_evaluations": 69200.0
+    },
+    "unprotected": {
+      "old_test_accuracy_before": 0.9583333333333334,
+      "old_test_accuracy_after": 0.9574074074074074,
+      "changed_test_accuracy_before": 0.924074074074074,
+      "changed_test_accuracy_after": 0.9388888888888888,
+      "adaptation_probability_before": 0.9238016985235794,
+      "adaptation_probability_after": 0.9607216533902866,
+      "max_retained_anchor_drift": 0.001010542203668326,
+      "heldout_mean_probability_drift": 0.014313856018063814,
+      "heldout_max_probability_drift": 0.714384191899752,
+      "scalar_calls": 9917.333333333334,
+      "model_example_evaluations": 66659.33333333333
+    },
+    "frozen": {
+      "old_test_accuracy_before": 0.9583333333333334,
+      "old_test_accuracy_after": 0.9583333333333334,
+      "changed_test_accuracy_before": 0.924074074074074,
+      "changed_test_accuracy_after": 0.924074074074074,
+      "adaptation_probability_before": 0.9238016985235794,
+      "adaptation_probability_after": 0.9238016985235794,
+      "max_retained_anchor_drift": 0.0,
+      "heldout_mean_probability_drift": 0.0,
+      "heldout_max_probability_drift": 0.0,
+      "scalar_calls": 10.0,
+      "model_example_evaluations": 10.0
+    }
+  },
+  "specimens": [
+    {
+      "seed": 71,
+      "training_examples": 1149,
+      "calibration_examples": 288,
+      "heldout_examples": 360,
+      "adaptation_examples": 64,
+      "model_training_iterations": 34,
+      "training_warnings": [],
+      "sklearn_version": "1.8.0",
+      "numpy_version": "2.3.5",
+      "resources": {
+        "adaptive_parameters": 24,
+        "anchors": 10,
+        "anchor_image_values": 640,
+        "anchor_response_tolerances": 20,
+        "anchor_labels": 10,
+        "measured_sensitivity_workspace_values": 264,
+        "orthogonal_basis_workspace_max_values": 240,
+        "base_model_parameter_values": 1810,
+        "note": "adaptation images/labels and temporary model evaluations also required; test data are evaluator-only"
+      },
+      "runs": [
+        {
+          "method": "guard",
+          "seed": 71,
+          "old_test_accuracy_before": 0.9416666666666667,
+          "old_test_accuracy_after": 0.9444444444444444,
+          "changed_test_accuracy_before": 0.9,
+          "changed_test_accuracy_after": 0.8944444444444445,
+          "adaptation_probability_before": 0.973428825016306,
+          "adaptation_probability_after": 0.981553035872962,
+          "target": 0.995,
+          "max_retained_anchor_drift": 4.2709435099652637e-07,
+          "heldout_mean_probability_drift": 0.010639798373617771,
+          "heldout_max_probability_drift": 0.7895375519196611,
+          "scalar_calls": 13254,
+          "model_example_evaluations": 89106,
+          "parameter_change_norm": 2.0733700145496683,
+          "rejected_candidates": 4,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 2.5611442189266143e-08,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 8.70843392952736e-08,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 2.649828259038145e-07,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 1.9654102278998664e-07,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 2.0817450319121633e-07,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 2.0143021206564526e-07,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 2.9452986549660665e-07,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 3.9984975863660566e-07,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "accepted",
+              "anchor_drift": 4.2709435099652637e-07,
+              "scalar_calls": 4960
+            },
+            {
+              "step": 9,
+              "status": "accepted",
+              "anchor_drift": 1.9891258917770216e-07,
+              "scalar_calls": 5510
+            },
+            {
+              "step": 10,
+              "status": "accepted",
+              "anchor_drift": 1.4988277263761063e-07,
+              "scalar_calls": 6060
+            },
+            {
+              "step": 11,
+              "status": "accepted",
+              "anchor_drift": 1.5219060578441912e-07,
+              "scalar_calls": 6610
+            },
+            {
+              "step": 12,
+              "status": "accepted",
+              "anchor_drift": 9.966397285232631e-08,
+              "scalar_calls": 7160
+            },
+            {
+              "step": 13,
+              "status": "accepted",
+              "anchor_drift": 1.0686619889010984e-07,
+              "scalar_calls": 7710
+            },
+            {
+              "step": 14,
+              "status": "accepted",
+              "anchor_drift": 7.841961158217003e-08,
+              "scalar_calls": 8260
+            },
+            {
+              "step": 15,
+              "status": "accepted",
+              "anchor_drift": 8.603126355755109e-08,
+              "scalar_calls": 8810
+            },
+            {
+              "step": 16,
+              "status": "accepted",
+              "anchor_drift": 7.17319577070441e-08,
+              "scalar_calls": 9360
+            },
+            {
+              "step": 17,
+              "status": "accepted",
+              "anchor_drift": 8.37291880273483e-08,
+              "scalar_calls": 9910
+            },
+            {
+              "step": 18,
+              "status": "accepted",
+              "anchor_drift": 7.088378617403635e-08,
+              "scalar_calls": 10460
+            },
+            {
+              "step": 19,
+              "status": "accepted",
+              "anchor_drift": 2.1806294991932873e-08,
+              "scalar_calls": 11021
+            },
+            {
+              "step": 20,
+              "status": "accepted",
+              "anchor_drift": 2.640400920128627e-08,
+              "scalar_calls": 11571
+            },
+            {
+              "step": 21,
+              "status": "accepted",
+              "anchor_drift": 2.656083075702753e-08,
+              "scalar_calls": 12132
+            },
+            {
+              "step": 22,
+              "status": "accepted",
+              "anchor_drift": 1.2802121251986875e-08,
+              "scalar_calls": 12693
+            },
+            {
+              "step": 23,
+              "status": "accepted",
+              "anchor_drift": 2.5660792823956058e-08,
+              "scalar_calls": 13254
+            }
+          ]
+        },
+        {
+          "method": "tangent_only",
+          "seed": 71,
+          "old_test_accuracy_before": 0.9416666666666667,
+          "old_test_accuracy_after": 0.9444444444444444,
+          "changed_test_accuracy_before": 0.9,
+          "changed_test_accuracy_after": 0.8944444444444445,
+          "adaptation_probability_before": 0.973428825016306,
+          "adaptation_probability_after": 0.981553035872962,
+          "target": 0.995,
+          "max_retained_anchor_drift": 4.2709435099652637e-07,
+          "heldout_mean_probability_drift": 0.010639798373617771,
+          "heldout_max_probability_drift": 0.7895375519196611,
+          "scalar_calls": 13254,
+          "model_example_evaluations": 89106,
+          "parameter_change_norm": 2.0733700145496683,
+          "rejected_candidates": 4,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 2.5611442189266143e-08,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 8.70843392952736e-08,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 2.649828259038145e-07,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 1.9654102278998664e-07,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 2.0817450319121633e-07,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 2.0143021206564526e-07,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 2.9452986549660665e-07,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 3.9984975863660566e-07,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "accepted",
+              "anchor_drift": 4.2709435099652637e-07,
+              "scalar_calls": 4960
+            },
+            {
+              "step": 9,
+              "status": "accepted",
+              "anchor_drift": 1.9891258917770216e-07,
+              "scalar_calls": 5510
+            },
+            {
+              "step": 10,
+              "status": "accepted",
+              "anchor_drift": 1.4988277263761063e-07,
+              "scalar_calls": 6060
+            },
+            {
+              "step": 11,
+              "status": "accepted",
+              "anchor_drift": 1.5219060578441912e-07,
+              "scalar_calls": 6610
+            },
+            {
+              "step": 12,
+              "status": "accepted",
+              "anchor_drift": 9.966397285232631e-08,
+              "scalar_calls": 7160
+            },
+            {
+              "step": 13,
+              "status": "accepted",
+              "anchor_drift": 1.0686619889010984e-07,
+              "scalar_calls": 7710
+            },
+            {
+              "step": 14,
+              "status": "accepted",
+              "anchor_drift": 7.841961158217003e-08,
+              "scalar_calls": 8260
+            },
+            {
+              "step": 15,
+              "status": "accepted",
+              "anchor_drift": 8.603126355755109e-08,
+              "scalar_calls": 8810
+            },
+            {
+              "step": 16,
+              "status": "accepted",
+              "anchor_drift": 7.17319577070441e-08,
+              "scalar_calls": 9360
+            },
+            {
+              "step": 17,
+              "status": "accepted",
+              "anchor_drift": 8.37291880273483e-08,
+              "scalar_calls": 9910
+            },
+            {
+              "step": 18,
+              "status": "accepted",
+              "anchor_drift": 7.088378617403635e-08,
+              "scalar_calls": 10460
+            },
+            {
+              "step": 19,
+              "status": "accepted",
+              "anchor_drift": 2.1806294991932873e-08,
+              "scalar_calls": 11021
+            },
+            {
+              "step": 20,
+              "status": "accepted",
+              "anchor_drift": 2.640400920128627e-08,
+              "scalar_calls": 11571
+            },
+            {
+              "step": 21,
+              "status": "accepted",
+              "anchor_drift": 2.656083075702753e-08,
+              "scalar_calls": 12132
+            },
+            {
+              "step": 22,
+              "status": "accepted",
+              "anchor_drift": 1.2802121251986875e-08,
+              "scalar_calls": 12693
+            },
+            {
+              "step": 23,
+              "status": "accepted",
+              "anchor_drift": 2.5660792823956058e-08,
+              "scalar_calls": 13254
+            }
+          ]
+        },
+        {
+          "method": "unprotected",
+          "seed": 71,
+          "old_test_accuracy_before": 0.9416666666666667,
+          "old_test_accuracy_after": 0.95,
+          "changed_test_accuracy_before": 0.9,
+          "changed_test_accuracy_after": 0.9222222222222223,
+          "adaptation_probability_before": 0.973428825016306,
+          "adaptation_probability_after": 0.9841886896164909,
+          "target": 0.995,
+          "max_retained_anchor_drift": 0.002702840826351749,
+          "heldout_mean_probability_drift": 0.01439853705745625,
+          "heldout_max_probability_drift": 0.5684405527299425,
+          "scalar_calls": 13210,
+          "model_example_evaluations": 88810,
+          "parameter_change_norm": 2.7538778391239043,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 1.6655103297180673e-05,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 4.5793957015427544e-05,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 9.039602305349614e-05,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 0.00015994412507347455,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 0.000262855417625274,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 0.0003928455225893357,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 0.0004468240263058032,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 0.0004204595933510191,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "accepted",
+              "anchor_drift": 0.0003288044946967439,
+              "scalar_calls": 4960
+            },
+            {
+              "step": 9,
+              "status": "accepted",
+              "anchor_drift": 0.0004345038686366376,
+              "scalar_calls": 5510
+            },
+            {
+              "step": 10,
+              "status": "accepted",
+              "anchor_drift": 0.0002482117773602299,
+              "scalar_calls": 6060
+            },
+            {
+              "step": 11,
+              "status": "accepted",
+              "anchor_drift": 0.0004524931443128377,
+              "scalar_calls": 6610
+            },
+            {
+              "step": 12,
+              "status": "accepted",
+              "anchor_drift": 0.00033184281871023735,
+              "scalar_calls": 7160
+            },
+            {
+              "step": 13,
+              "status": "accepted",
+              "anchor_drift": 0.0005225167241686979,
+              "scalar_calls": 7710
+            },
+            {
+              "step": 14,
+              "status": "accepted",
+              "anchor_drift": 0.0004152275941038397,
+              "scalar_calls": 8260
+            },
+            {
+              "step": 15,
+              "status": "accepted",
+              "anchor_drift": 0.0006646622951791414,
+              "scalar_calls": 8810
+            },
+            {
+              "step": 16,
+              "status": "accepted",
+              "anchor_drift": 0.0004876858828176678,
+              "scalar_calls": 9360
+            },
+            {
+              "step": 17,
+              "status": "accepted",
+              "anchor_drift": 0.0009007410827742701,
+              "scalar_calls": 9910
+            },
+            {
+              "step": 18,
+              "status": "accepted",
+              "anchor_drift": 0.0005493485988813385,
+              "scalar_calls": 10460
+            },
+            {
+              "step": 19,
+              "status": "accepted",
+              "anchor_drift": 0.001270800885863732,
+              "scalar_calls": 11010
+            },
+            {
+              "step": 20,
+              "status": "accepted",
+              "anchor_drift": 0.0007944806391384507,
+              "scalar_calls": 11560
+            },
+            {
+              "step": 21,
+              "status": "accepted",
+              "anchor_drift": 0.0018437411436998952,
+              "scalar_calls": 12110
+            },
+            {
+              "step": 22,
+              "status": "accepted",
+              "anchor_drift": 0.0011932703631113428,
+              "scalar_calls": 12660
+            },
+            {
+              "step": 23,
+              "status": "accepted",
+              "anchor_drift": 0.002702840826351749,
+              "scalar_calls": 13210
+            }
+          ]
+        },
+        {
+          "method": "frozen",
+          "seed": 71,
+          "old_test_accuracy_before": 0.9416666666666667,
+          "old_test_accuracy_after": 0.9416666666666667,
+          "changed_test_accuracy_before": 0.9,
+          "changed_test_accuracy_after": 0.9,
+          "adaptation_probability_before": 0.973428825016306,
+          "adaptation_probability_after": 0.973428825016306,
+          "target": 0.995,
+          "max_retained_anchor_drift": 0.0,
+          "heldout_mean_probability_drift": 0.0,
+          "heldout_max_probability_drift": 0.0,
+          "scalar_calls": 10,
+          "model_example_evaluations": 10,
+          "parameter_change_norm": 0.0,
+          "rejected_candidates": 0,
+          "trajectory": []
+        }
+      ]
+    },
+    {
+      "seed": 83,
+      "training_examples": 1149,
+      "calibration_examples": 288,
+      "heldout_examples": 360,
+      "adaptation_examples": 64,
+      "model_training_iterations": 31,
+      "training_warnings": [],
+      "sklearn_version": "1.8.0",
+      "numpy_version": "2.3.5",
+      "resources": {
+        "adaptive_parameters": 24,
+        "anchors": 10,
+        "anchor_image_values": 640,
+        "anchor_response_tolerances": 20,
+        "anchor_labels": 10,
+        "measured_sensitivity_workspace_values": 264,
+        "orthogonal_basis_workspace_max_values": 240,
+        "base_model_parameter_values": 1810,
+        "note": "adaptation images/labels and temporary model evaluations also required; test data are evaluator-only"
+      },
+      "runs": [
+        {
+          "method": "guard",
+          "seed": 83,
+          "old_test_accuracy_before": 0.9611111111111111,
+          "old_test_accuracy_after": 0.9555555555555556,
+          "changed_test_accuracy_before": 0.9416666666666667,
+          "changed_test_accuracy_after": 0.9444444444444444,
+          "adaptation_probability_before": 0.9278544369532398,
+          "adaptation_probability_after": 0.9680855476391026,
+          "target": 0.9778544369532398,
+          "max_retained_anchor_drift": 5.578913109594019e-06,
+          "heldout_mean_probability_drift": 0.02670677330056029,
+          "heldout_max_probability_drift": 0.9950705758819656,
+          "scalar_calls": 13210,
+          "model_example_evaluations": 88810,
+          "parameter_change_norm": 3.159964068067115,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 5.394759878929456e-06,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 3.5255539996281726e-06,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 3.1128311800410202e-06,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 1.7043558447893403e-06,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 3.6252462290997656e-06,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 2.812599803503346e-06,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 2.2201257930953844e-06,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 3.819397832782734e-06,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "accepted",
+              "anchor_drift": 1.203586029174808e-06,
+              "scalar_calls": 4960
+            },
+            {
+              "step": 9,
+              "status": "accepted",
+              "anchor_drift": 1.02781867328261e-06,
+              "scalar_calls": 5510
+            },
+            {
+              "step": 10,
+              "status": "accepted",
+              "anchor_drift": 4.1206102996405036e-07,
+              "scalar_calls": 6060
+            },
+            {
+              "step": 11,
+              "status": "accepted",
+              "anchor_drift": 1.4179321583540627e-07,
+              "scalar_calls": 6610
+            },
+            {
+              "step": 12,
+              "status": "accepted",
+              "anchor_drift": 1.377400477009516e-07,
+              "scalar_calls": 7160
+            },
+            {
+              "step": 13,
+              "status": "accepted",
+              "anchor_drift": 6.691951159876197e-08,
+              "scalar_calls": 7710
+            },
+            {
+              "step": 14,
+              "status": "accepted",
+              "anchor_drift": 6.038487909698631e-08,
+              "scalar_calls": 8260
+            },
+            {
+              "step": 15,
+              "status": "accepted",
+              "anchor_drift": 2.6208684011930217e-07,
+              "scalar_calls": 8810
+            },
+            {
+              "step": 16,
+              "status": "accepted",
+              "anchor_drift": 8.397509655422297e-07,
+              "scalar_calls": 9360
+            },
+            {
+              "step": 17,
+              "status": "accepted",
+              "anchor_drift": 2.1151457199053425e-06,
+              "scalar_calls": 9910
+            },
+            {
+              "step": 18,
+              "status": "accepted",
+              "anchor_drift": 4.964649860883519e-06,
+              "scalar_calls": 10460
+            },
+            {
+              "step": 19,
+              "status": "accepted",
+              "anchor_drift": 1.5660115755267157e-06,
+              "scalar_calls": 11010
+            },
+            {
+              "step": 20,
+              "status": "accepted",
+              "anchor_drift": 5.578913109594019e-06,
+              "scalar_calls": 11560
+            },
+            {
+              "step": 21,
+              "status": "accepted",
+              "anchor_drift": 1.8873933641527785e-06,
+              "scalar_calls": 12110
+            },
+            {
+              "step": 22,
+              "status": "accepted",
+              "anchor_drift": 3.6647481419516126e-06,
+              "scalar_calls": 12660
+            },
+            {
+              "step": 23,
+              "status": "accepted",
+              "anchor_drift": 2.8864172137987865e-06,
+              "scalar_calls": 13210
+            }
+          ]
+        },
+        {
+          "method": "tangent_only",
+          "seed": 83,
+          "old_test_accuracy_before": 0.9611111111111111,
+          "old_test_accuracy_after": 0.9555555555555556,
+          "changed_test_accuracy_before": 0.9416666666666667,
+          "changed_test_accuracy_after": 0.9444444444444444,
+          "adaptation_probability_before": 0.9278544369532398,
+          "adaptation_probability_after": 0.9680855476391026,
+          "target": 0.9778544369532398,
+          "max_retained_anchor_drift": 5.578913109594019e-06,
+          "heldout_mean_probability_drift": 0.02670677330056029,
+          "heldout_max_probability_drift": 0.9950705758819656,
+          "scalar_calls": 13210,
+          "model_example_evaluations": 88810,
+          "parameter_change_norm": 3.159964068067115,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 5.394759878929456e-06,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 3.5255539996281726e-06,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 3.1128311800410202e-06,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 1.7043558447893403e-06,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 3.6252462290997656e-06,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 2.812599803503346e-06,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 2.2201257930953844e-06,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 3.819397832782734e-06,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "accepted",
+              "anchor_drift": 1.203586029174808e-06,
+              "scalar_calls": 4960
+            },
+            {
+              "step": 9,
+              "status": "accepted",
+              "anchor_drift": 1.02781867328261e-06,
+              "scalar_calls": 5510
+            },
+            {
+              "step": 10,
+              "status": "accepted",
+              "anchor_drift": 4.1206102996405036e-07,
+              "scalar_calls": 6060
+            },
+            {
+              "step": 11,
+              "status": "accepted",
+              "anchor_drift": 1.4179321583540627e-07,
+              "scalar_calls": 6610
+            },
+            {
+              "step": 12,
+              "status": "accepted",
+              "anchor_drift": 1.377400477009516e-07,
+              "scalar_calls": 7160
+            },
+            {
+              "step": 13,
+              "status": "accepted",
+              "anchor_drift": 6.691951159876197e-08,
+              "scalar_calls": 7710
+            },
+            {
+              "step": 14,
+              "status": "accepted",
+              "anchor_drift": 6.038487909698631e-08,
+              "scalar_calls": 8260
+            },
+            {
+              "step": 15,
+              "status": "accepted",
+              "anchor_drift": 2.6208684011930217e-07,
+              "scalar_calls": 8810
+            },
+            {
+              "step": 16,
+              "status": "accepted",
+              "anchor_drift": 8.397509655422297e-07,
+              "scalar_calls": 9360
+            },
+            {
+              "step": 17,
+              "status": "accepted",
+              "anchor_drift": 2.1151457199053425e-06,
+              "scalar_calls": 9910
+            },
+            {
+              "step": 18,
+              "status": "accepted",
+              "anchor_drift": 4.964649860883519e-06,
+              "scalar_calls": 10460
+            },
+            {
+              "step": 19,
+              "status": "accepted",
+              "anchor_drift": 1.5660115755267157e-06,
+              "scalar_calls": 11010
+            },
+            {
+              "step": 20,
+              "status": "accepted",
+              "anchor_drift": 5.578913109594019e-06,
+              "scalar_calls": 11560
+            },
+            {
+              "step": 21,
+              "status": "accepted",
+              "anchor_drift": 1.8873933641527785e-06,
+              "scalar_calls": 12110
+            },
+            {
+              "step": 22,
+              "status": "accepted",
+              "anchor_drift": 3.6647481419516126e-06,
+              "scalar_calls": 12660
+            },
+            {
+              "step": 23,
+              "status": "accepted",
+              "anchor_drift": 2.8864172137987865e-06,
+              "scalar_calls": 13210
+            }
+          ]
+        },
+        {
+          "method": "unprotected",
+          "seed": 83,
+          "old_test_accuracy_before": 0.9611111111111111,
+          "old_test_accuracy_after": 0.9527777777777777,
+          "changed_test_accuracy_before": 0.9416666666666667,
+          "changed_test_accuracy_after": 0.9583333333333334,
+          "adaptation_probability_before": 0.9278544369532398,
+          "adaptation_probability_after": 0.9778544369531993,
+          "target": 0.9778544369532398,
+          "max_retained_anchor_drift": 0.00029151556064999085,
+          "heldout_mean_probability_drift": 0.024579770144903267,
+          "heldout_max_probability_drift": 0.9205985982181084,
+          "scalar_calls": 12671,
+          "model_example_evaluations": 85184,
+          "parameter_change_norm": 2.999717688390683,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 0.00011416349578818874,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 0.0002023374600595984,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 0.0002517378016377858,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 0.0002452887037037721,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 0.0002385418951111884,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 0.00023217380026741008,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 0.00022526762952601587,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 0.00021812950542765552,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "accepted",
+              "anchor_drift": 0.00020754497357156065,
+              "scalar_calls": 4960
+            },
+            {
+              "step": 9,
+              "status": "accepted",
+              "anchor_drift": 0.00018304456148177106,
+              "scalar_calls": 5510
+            },
+            {
+              "step": 10,
+              "status": "accepted",
+              "anchor_drift": 0.00014991825877996856,
+              "scalar_calls": 6060
+            },
+            {
+              "step": 11,
+              "status": "accepted",
+              "anchor_drift": 0.00013809497380035118,
+              "scalar_calls": 6610
+            },
+            {
+              "step": 12,
+              "status": "accepted",
+              "anchor_drift": 0.00014311825441715165,
+              "scalar_calls": 7160
+            },
+            {
+              "step": 13,
+              "status": "accepted",
+              "anchor_drift": 0.00015613693882243762,
+              "scalar_calls": 7710
+            },
+            {
+              "step": 14,
+              "status": "accepted",
+              "anchor_drift": 0.000170218484495388,
+              "scalar_calls": 8260
+            },
+            {
+              "step": 15,
+              "status": "accepted",
+              "anchor_drift": 0.00018468527426795944,
+              "scalar_calls": 8810
+            },
+            {
+              "step": 16,
+              "status": "accepted",
+              "anchor_drift": 0.00020062116857122447,
+              "scalar_calls": 9360
+            },
+            {
+              "step": 17,
+              "status": "accepted",
+              "anchor_drift": 0.0002192125531264022,
+              "scalar_calls": 9910
+            },
+            {
+              "step": 18,
+              "status": "accepted",
+              "anchor_drift": 0.0002406932456257005,
+              "scalar_calls": 10460
+            },
+            {
+              "step": 19,
+              "status": "accepted",
+              "anchor_drift": 0.00026382421585513516,
+              "scalar_calls": 11010
+            },
+            {
+              "step": 20,
+              "status": "accepted",
+              "anchor_drift": 0.0002869757199587264,
+              "scalar_calls": 11560
+            },
+            {
+              "step": 21,
+              "status": "accepted",
+              "anchor_drift": 0.0002915139449409798,
+              "scalar_calls": 12110
+            },
+            {
+              "step": 22,
+              "status": "accepted",
+              "anchor_drift": 0.00029151556064999085,
+              "scalar_calls": 12660
+            },
+            {
+              "step": 23,
+              "status": "target_met",
+              "anchor_drift": 0.00029151556064999085,
+              "scalar_calls": 12671
+            }
+          ]
+        },
+        {
+          "method": "frozen",
+          "seed": 83,
+          "old_test_accuracy_before": 0.9611111111111111,
+          "old_test_accuracy_after": 0.9611111111111111,
+          "changed_test_accuracy_before": 0.9416666666666667,
+          "changed_test_accuracy_after": 0.9416666666666667,
+          "adaptation_probability_before": 0.9278544369532398,
+          "adaptation_probability_after": 0.9278544369532398,
+          "target": 0.9778544369532398,
+          "max_retained_anchor_drift": 0.0,
+          "heldout_mean_probability_drift": 0.0,
+          "heldout_max_probability_drift": 0.0,
+          "scalar_calls": 10,
+          "model_example_evaluations": 10,
+          "parameter_change_norm": 0.0,
+          "rejected_candidates": 0,
+          "trajectory": []
+        }
+      ]
+    },
+    {
+      "seed": 97,
+      "training_examples": 1149,
+      "calibration_examples": 288,
+      "heldout_examples": 360,
+      "adaptation_examples": 64,
+      "model_training_iterations": 33,
+      "training_warnings": [],
+      "sklearn_version": "1.8.0",
+      "numpy_version": "2.3.5",
+      "resources": {
+        "adaptive_parameters": 24,
+        "anchors": 10,
+        "anchor_image_values": 640,
+        "anchor_response_tolerances": 20,
+        "anchor_labels": 10,
+        "measured_sensitivity_workspace_values": 264,
+        "orthogonal_basis_workspace_max_values": 240,
+        "base_model_parameter_values": 1810,
+        "note": "adaptation images/labels and temporary model evaluations also required; test data are evaluator-only"
+      },
+      "runs": [
+        {
+          "method": "guard",
+          "seed": 97,
+          "old_test_accuracy_before": 0.9722222222222222,
+          "old_test_accuracy_after": 0.9694444444444444,
+          "changed_test_accuracy_before": 0.9305555555555556,
+          "changed_test_accuracy_after": 0.9333333333333333,
+          "adaptation_probability_before": 0.8701218336011922,
+          "adaptation_probability_after": 0.9201218315076556,
+          "target": 0.9201218336011923,
+          "max_retained_anchor_drift": 1.3954171051988595e-07,
+          "heldout_mean_probability_drift": 0.004140541380040101,
+          "heldout_max_probability_drift": 0.6754164541170975,
+          "scalar_calls": 4421,
+          "model_example_evaluations": 29684,
+          "parameter_change_norm": 0.9588923919108758,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 1.3772078977236646e-07,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 7.97670852703547e-08,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 1.229952527603828e-07,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 8.441448606788526e-08,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 3.12776219368871e-08,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 1.3954171051988595e-07,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 1.4791695757132572e-08,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 5.195510688338345e-12,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "target_met",
+              "anchor_drift": 5.195510688338345e-12,
+              "scalar_calls": 4421
+            }
+          ]
+        },
+        {
+          "method": "tangent_only",
+          "seed": 97,
+          "old_test_accuracy_before": 0.9722222222222222,
+          "old_test_accuracy_after": 0.9694444444444444,
+          "changed_test_accuracy_before": 0.9305555555555556,
+          "changed_test_accuracy_after": 0.9333333333333333,
+          "adaptation_probability_before": 0.8701218336011922,
+          "adaptation_probability_after": 0.9201218315076556,
+          "target": 0.9201218336011923,
+          "max_retained_anchor_drift": 1.3954171051988595e-07,
+          "heldout_mean_probability_drift": 0.004140541380040101,
+          "heldout_max_probability_drift": 0.6754164541170975,
+          "scalar_calls": 4421,
+          "model_example_evaluations": 29684,
+          "parameter_change_norm": 0.9588923919108758,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 1.3772078977236646e-07,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 7.97670852703547e-08,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 1.229952527603828e-07,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 8.441448606788526e-08,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 3.12776219368871e-08,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 1.3954171051988595e-07,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 1.4791695757132572e-08,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "accepted",
+              "anchor_drift": 5.195510688338345e-12,
+              "scalar_calls": 4410
+            },
+            {
+              "step": 8,
+              "status": "target_met",
+              "anchor_drift": 5.195510688338345e-12,
+              "scalar_calls": 4421
+            }
+          ]
+        },
+        {
+          "method": "unprotected",
+          "seed": 97,
+          "old_test_accuracy_before": 0.9722222222222222,
+          "old_test_accuracy_after": 0.9694444444444444,
+          "changed_test_accuracy_before": 0.9305555555555556,
+          "changed_test_accuracy_after": 0.9361111111111111,
+          "adaptation_probability_before": 0.8701218336011922,
+          "adaptation_probability_after": 0.9201218336011695,
+          "target": 0.9201218336011923,
+          "max_retained_anchor_drift": 3.727022400323854e-05,
+          "heldout_mean_probability_drift": 0.00396326085183193,
+          "heldout_max_probability_drift": 0.654113424751205,
+          "scalar_calls": 3871,
+          "model_example_evaluations": 25984,
+          "parameter_change_norm": 0.8502789540860987,
+          "rejected_candidates": 0,
+          "trajectory": [
+            {
+              "step": 0,
+              "status": "accepted",
+              "anchor_drift": 1.2197907758082494e-05,
+              "scalar_calls": 560
+            },
+            {
+              "step": 1,
+              "status": "accepted",
+              "anchor_drift": 1.8718932026873247e-05,
+              "scalar_calls": 1110
+            },
+            {
+              "step": 2,
+              "status": "accepted",
+              "anchor_drift": 2.5796855285808995e-05,
+              "scalar_calls": 1660
+            },
+            {
+              "step": 3,
+              "status": "accepted",
+              "anchor_drift": 3.443343735076709e-05,
+              "scalar_calls": 2210
+            },
+            {
+              "step": 4,
+              "status": "accepted",
+              "anchor_drift": 3.723221647533581e-05,
+              "scalar_calls": 2760
+            },
+            {
+              "step": 5,
+              "status": "accepted",
+              "anchor_drift": 3.727020087984645e-05,
+              "scalar_calls": 3310
+            },
+            {
+              "step": 6,
+              "status": "accepted",
+              "anchor_drift": 3.727022400323854e-05,
+              "scalar_calls": 3860
+            },
+            {
+              "step": 7,
+              "status": "target_met",
+              "anchor_drift": 3.727022400323854e-05,
+              "scalar_calls": 3871
+            }
+          ]
+        },
+        {
+          "method": "frozen",
+          "seed": 97,
+          "old_test_accuracy_before": 0.9722222222222222,
+          "old_test_accuracy_after": 0.9722222222222222,
+          "changed_test_accuracy_before": 0.9305555555555556,
+          "changed_test_accuracy_after": 0.9305555555555556,
+          "adaptation_probability_before": 0.8701218336011922,
+          "adaptation_probability_after": 0.8701218336011922,
+          "target": 0.9201218336011923,
+          "max_retained_anchor_drift": 0.0,
+          "heldout_mean_probability_drift": 0.0,
+          "heldout_max_probability_drift": 0.0,
+          "scalar_calls": 10,
+          "model_example_evaluations": 10,
+          "parameter_change_norm": 0.0,
+          "rejected_candidates": 0,
+          "trajectory": []
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "old held-out responses are not constrained by ten retained anchors",
+    "the readout is a scalar aggregate for the 64-example adaptation batch; per-example computation is counted",
+    "candidate network evaluations are an explicit software privilege",
+    "small dataset and three seeds do not establish superiority to GEM/OGD or modern adapters"
+  ]
+}

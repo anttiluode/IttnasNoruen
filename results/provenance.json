@@ -1,0 +1,25 @@
+{
+  "upstream_base": "98cbcc551b3e4efdbf61e3a72139dfae6ba94f82",
+  "python": "3.12.13 (main, Aug  7 2026, 02:25:39) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "sklearn": "1.8.0",
+  "source_sha256": {
+    "behavioral_guard.py": "056e0bead26ba3347ef20732677523a581058682f35232263e1dd80fd95b11a2",
+    "digits_transfer.py": "caa744900eace17f9c99e9a2cc3ddccb3b415aafa2b319b2e0bf7f6e52622736",
+    "gate4_compatible_change.py": "03638691d67643f108f646c5cbeb887f599e6e4940a2c1beb9e765ee0448b81c",
+    "gate5_replay_coordination.py": "8aa3f1de761f0bb1d688419f82d3cecdfc7de452d5b0392206dc887f0502c977",
+    "gate6_continuous_learning.py": "f1e666ad4dcc7a01e9a4662e1b12a9930fa67d4846e63819bf22eab136a4cd25",
+    "gate7_measured_transfer.py": "6cf260517a342505c19d0d6b380d7d5e0b372f31274f536d1de7ad7652aeb98a",
+    "gates.py": "21d304fdfefed42d471a787bc8bc4e2a1d325f99982c0dd800a506d5cc1158f9",
+    "ittnas_noruen.py": "34aa0884e107954efa76fef117ed9a149a29062763844943ede61e2cad6fdc76",
+    "replay_coordination.py": "5fa0e279a8c5a4d88b92227dd1914dda7b0c37ba008a9687dfad9c010c0e92cf",
+    "report_results.py": "75522f082e3a87a71f908137e5db005dfba576f58836e548c9aab2c2e6b71f5c",
+    "tests/test_behavioral_guard.py": "6ef17fc43b36ce8357d72dc1b1369b9f7bfd7d038baa17e21c668b2d59f1ddb4",
+    "tests/test_gates.py": "83eb1eebdb871e9d1afe2db79113ab5bf562ab575c89499b58aaf326eef5ce61"
+  },
+  "commands": [
+    "python gate6_continuous_learning.py --output results/gate6_continuous.json",
+    "python gate7_measured_transfer.py --output results/gate7_transfer.json",
+    "python digits_transfer.py --output results/digits_transfer.json"
+  ]
+}

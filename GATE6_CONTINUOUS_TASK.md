@@ -1,5 +1,13 @@
 # Gate 6 — Continuous changing-substrate task
 
+**Implementation status:** [`gate6_continuous_learning.py`](gate6_continuous_learning.py)
+now exercises this contract in the gain model. See [`RESULTS.md`](RESULTS.md) for
+the matched stream, negative results and counted resources. Windows and version IDs
+are supplied; material is fixed within a four-tick balanced intervention; digital
+receipts do not decay; replay sensitivities occupy a bounded measured sketch.
+The coupled nonlinear experiment is separate and is not claimed to satisfy this
+continuous local-interface contract.
+
 Gate 4 is the privileged mathematical reference. Gate 5 supplies an implemented replay-driven compatibility mechanism in the present diagonal gain model. Gate 6 must now force that mechanism to survive the interactions that earlier gates still separate.
 
 The task must combine:
