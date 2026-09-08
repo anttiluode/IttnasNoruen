@@ -189,6 +189,11 @@ class IttnasNoruen:
         residual = observed - predicted
 
         self.eligibility = self.eligibility_decay * self.eligibility + residual
+
+        # A sealed receipt is still a decaying trace while time passes. An open receipt
+        # both decays and accumulates this tick's residual.
+        for key in tuple(self._pending_receipts):
+            self._pending_receipts[key] *= self.eligibility_decay
         for key in tuple(self._open_receipts):
             self._open_receipts[key] = (
                 self.eligibility_decay * self._open_receipts[key] + residual
