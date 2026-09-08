@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import math
 from typing import Any
 
@@ -185,3 +186,10 @@ def gate4_compatible_change_reference() -> dict[str, Any]:
             "geometry or additional measurements. That is the substantive next target."
         ),
     }
+
+
+if __name__ == "__main__":
+    result = gate4_compatible_change_reference()
+    print(json.dumps(result, indent=2, sort_keys=True))
+    if not result["pass"]:
+        raise SystemExit(1)
