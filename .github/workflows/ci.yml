@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, integration-gate0]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -22,5 +22,7 @@ jobs:
           python -m pip install -r requirements.txt
       - name: Run tests
         run: python -m pytest -q
-      - name: Run gates
+      - name: Run integration gates
         run: python gates.py
+      - name: Run compatible-change reference
+        run: python gate4_compatible_change.py
