@@ -1,5 +1,12 @@
-import numpy as np
+import math
 
+import numpy as np
+import pytest
+
+from gate4_compatible_change import (
+    delayed_error_stability_limit,
+    gate4_compatible_change_reference,
+)
 from gates import (
     gate0_efference_copy_credit,
     gate1_surprise_is_not_memory,
@@ -36,6 +43,25 @@ def test_gate3_material_changes_behavior_and_receipts_fix_declared_overlap():
     assert result["checks"]["receipt_excludes_stale_error"]
     assert result["checks"]["receipts_keep_pending_causes_separate"]
     assert result["checks"]["protected_future_response_survives_revision"]
+
+
+def test_gate4_reference_finds_overlapping_preserving_change():
+    result = gate4_compatible_change_reference()
+    assert result["pass"]
+    assert np.allclose(result["safe_direction"], [0.5, -0.5, 0.5, -0.5])
+    assert np.allclose(result["protected_after"], [2.0, 2.0, 2.0], atol=1e-12)
+    assert abs(result["new_response_after_20_updates"] - 3.0) < 2e-6
+    assert result["incompatible_control_safe_direction_norm"] < 1e-12
+
+
+def test_delay_stability_reference_values():
+    assert math.isclose(delayed_error_stability_limit(0), 2.0, rel_tol=1e-12)
+    assert math.isclose(delayed_error_stability_limit(1), 1.0, rel_tol=1e-12)
+    assert math.isclose(
+        delayed_error_stability_limit(3),
+        2.0 * math.sin(math.pi / 14.0),
+        rel_tol=1e-12,
+    )
 
 
 def test_no_consequence_means_no_material_update_even_with_residual():
@@ -93,3 +119,26 @@ def test_two_pending_receipts_survive_separate_consequences():
 
     assert update_a[0] > 0.0 and update_a[1] == 0.0
     assert update_b[1] > 0.0 and update_b[0] == 0.0
+
+
+def test_receipt_capacity_is_explicit_and_reusable():
+    learner = IttnasNoruen(
+        [0.0, 0.0, 0.0, 0.0],
+        material_feedback=0.0,
+        max_receipts=2,
+    )
+    assert learner.receipt_trace_value_capacity == 8
+
+    learner.begin_receipt("A")
+    learner.seal_receipt("A")
+    learner.begin_receipt("B")
+    learner.seal_receipt("B")
+    assert learner.receipt_count == 2
+
+    with pytest.raises(OverflowError):
+        learner.begin_receipt("C")
+
+    learner.apply_receipt_consequence("A", +1.0)
+    assert learner.receipt_count == 1
+    learner.begin_receipt("C")
+    assert learner.receipt_count == 2

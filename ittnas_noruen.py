@@ -33,6 +33,11 @@ class IttnasNoruen:
     A receipt never contains a causal branch label. It only identifies a declared window
     or action whose delayed teaching signal may arrive later. If the experiment cannot
     delimit such windows, the ambiguity is not solved by this class.
+
+    ``max_receipts`` makes the temporal memory budget explicit. A four-branch learner
+    with capacity K can retain at most 4K receipt-trace numbers, plus identifiers and
+    bookkeeping. Capacity does not solve causal attribution; it only prevents an
+    unbounded dictionary from masquerading as free memory.
     """
 
     def __init__(
@@ -45,12 +50,15 @@ class IttnasNoruen:
         memory_lr: float = 0.1,
         material_feedback: float = 0.5,
         readout_weights: Iterable[float] | None = None,
+        max_receipts: int | None = None,
     ) -> None:
         signature = np.asarray(list(true_self_signature), dtype=float)
         if signature.ndim != 1 or signature.size == 0:
             raise ValueError("true_self_signature must be a non-empty 1D vector")
         if not 0.0 <= eligibility_decay <= 1.0:
             raise ValueError("eligibility_decay must be in [0, 1]")
+        if max_receipts is not None and max_receipts < 1:
+            raise ValueError("max_receipts must be positive or None")
 
         self.true_self_signature = signature.copy()
         self.echo_enabled = bool(echo_enabled)
@@ -58,6 +66,7 @@ class IttnasNoruen:
         self.eligibility_decay = float(eligibility_decay)
         self.memory_lr = float(memory_lr)
         self.material_feedback = float(material_feedback)
+        self.max_receipts = None if max_receipts is None else int(max_receipts)
 
         if readout_weights is None:
             weights = np.ones_like(signature) / signature.size
@@ -81,6 +90,20 @@ class IttnasNoruen:
     @property
     def pending_receipt_ids(self) -> tuple[str, ...]:
         return tuple(sorted(self._pending_receipts))
+
+    @property
+    def open_receipt_ids(self) -> tuple[str, ...]:
+        return tuple(sorted(self._open_receipts))
+
+    @property
+    def receipt_count(self) -> int:
+        return len(self._open_receipts) + len(self._pending_receipts)
+
+    @property
+    def receipt_trace_value_capacity(self) -> int | None:
+        if self.max_receipts is None:
+            return None
+        return self.n_branches * self.max_receipts
 
     def set_true_self_signature(self, new_signature: Iterable[float]) -> None:
         new = np.asarray(list(new_signature), dtype=float)
@@ -148,6 +171,10 @@ class IttnasNoruen:
         key = str(receipt_id)
         if key in self._open_receipts or key in self._pending_receipts:
             raise ValueError(f"receipt already exists: {key}")
+        if self.max_receipts is not None and self.receipt_count >= self.max_receipts:
+            raise OverflowError(
+                f"receipt capacity exhausted: {self.receipt_count}/{self.max_receipts}"
+            )
         self._open_receipts[key] = np.zeros(self.n_branches, dtype=float)
 
     def seal_receipt(self, receipt_id: str) -> np.ndarray:
