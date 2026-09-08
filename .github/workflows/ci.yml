@@ -26,3 +26,5 @@ jobs:
         run: python gates.py
       - name: Run compatible-change reference
         run: python gate4_compatible_change.py
+      - name: Run replay coordination gate
+        run: python gate5_replay_coordination.py
