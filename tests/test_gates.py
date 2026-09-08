@@ -7,6 +7,7 @@ from gate4_compatible_change import (
     delayed_error_stability_limit,
     gate4_compatible_change_reference,
 )
+from gate5_replay_coordination import gate5_replay_driven_coordination
 from gates import (
     gate0_efference_copy_credit,
     gate1_surprise_is_not_memory,
@@ -14,6 +15,7 @@ from gates import (
     gate3_material_behavior_and_credit_receipts,
 )
 from ittnas_noruen import IttnasNoruen
+from replay_coordination import ReplayPlasticityCoordinator
 
 
 def test_gate0_efference_copy_cleans_credit():
@@ -52,6 +54,38 @@ def test_gate4_reference_finds_overlapping_preserving_change():
     assert np.allclose(result["protected_after"], [2.0, 2.0, 2.0], atol=1e-12)
     assert abs(result["new_response_after_20_updates"] - 3.0) < 2e-6
     assert result["incompatible_control_safe_direction_norm"] < 1e-12
+
+
+def test_gate5_replay_discovers_compatible_direction_without_matrix_P():
+    result = gate5_replay_driven_coordination()
+    assert result["pass"]
+    learned = result["learned_compatible_change"]
+    assert learned["protected_replays"] == 60
+    assert learned["proposal_reference_cosine"] > 0.999999
+    assert learned["max_protected_drift"] < 1e-6
+    assert abs(learned["new_response_after_commit"] - 3.0) < 1e-6
+    assert learned["replay_memory_scalar_values"] == 15
+    assert learned["temporary_proposal_scalar_values"] == 4
+
+
+def test_gate5_exposes_missing_replay_and_full_rank_conflict():
+    result = gate5_replay_driven_coordination()
+    assert result["full_rank_incompatibility"]["proposal_norm_after_full_rank_replay"] < 1e-10
+    assert abs(result["omitted_replay_attacker"]["untested_response_drift"]) > 0.4
+    assert result["direct_write_then_repair_attacker"]["max_transient_protected_drift"] > 0.49
+
+
+def test_replay_bank_capacity_is_explicit():
+    learner = IttnasNoruen(
+        [0.0, 0.0],
+        material_feedback=1.0,
+        readout_weights=[1.0, 1.0],
+    )
+    coordinator = ReplayPlasticityCoordinator(learner, max_protected=1)
+    coordinator.add_protected("old", [1.0, 0.0], 1.0)
+    assert coordinator.bank.stored_scalar_values == 3
+    with pytest.raises(OverflowError):
+        coordinator.add_protected("too-many", [0.0, 1.0], 1.0)
 
 
 def test_delay_stability_reference_values():
