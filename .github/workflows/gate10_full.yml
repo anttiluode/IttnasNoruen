@@ -1,11 +1,7 @@
 name: Gate 10 full panel
 
 on:
-  pull_request:
-    paths:
-      - 'gate10_q_coverage.py'
-      - 'GATE10_PROTOCOL.md'
-      - '.github/workflows/gate10_full.yml'
+  workflow_dispatch:
 
 jobs:
   full-gate10:
