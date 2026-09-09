@@ -1,0 +1,37 @@
+{
+  "gate": 14,
+  "status": "rolling_anchor_supported_random_rotation_best_long_checkpoint",
+  "source_run_id": 34374395669,
+  "source_head": "5eeb97832c4eab0d7768e15eaa083014f5a1918e",
+  "artifact_id": 10113251183,
+  "raw_receipt_sha256": "86b7273c594fd12ea7ec2bf6d2196a887f894e40ab8ea6b378b293a13928f1b7",
+  "artifact_zip_sha256": "e6645cb3b6caf0f3acf3ee1bd37d42d5f4be3348ccdd6d529e73484ce3a6ab56",
+  "checks_passed": true,
+  "seeds": [389, 401, 419],
+  "mean_unseen_loss": {
+    "0.05": {"frozen": 0.005639173818062789, "random": 0.004351155341843851, "qspan": 0.004941823748327782},
+    "0.10": {"frozen": 0.01003663756297498, "random": 0.010495607761933224, "qspan": 0.008037204159906641},
+    "0.20": {"frozen": 0.018087906579996014, "random": 0.015650794836763158, "qspan": 0.014978461311302765},
+    "0.40": {"frozen": 0.040188744823243104, "random": 0.022983421925255456, "qspan_two_seed_only": 0.030408276673640166}
+  },
+  "qspan_minus_frozen": {
+    "0.05": -0.0006973500697350071,
+    "0.10": -0.0019994334030683405,
+    "0.20": -0.003109445268693251,
+    "0.40_two_seed": -0.0107421875
+  },
+  "qspan_minus_random": {
+    "0.05": 0.0005906684064839323,
+    "0.10": -0.0024584036020265845,
+    "0.20": -0.0006723335254603934,
+    "0.40_two_seed": 0.006137225418410041
+  },
+  "random_minus_frozen": {
+    "0.05": -0.0012880184762189392,
+    "0.10": 0.0004589701989582441,
+    "0.20": -0.0024371117432328577,
+    "0.40": -0.017205322897987648,
+    "0.40_call_difference": -7103.333333333333
+  },
+  "interpretation": "Rolling pre-write response preservation survives the Gate-13 confound. Changing protected cue identities over time can further improve held-out access, but the instantaneous Q-span selector is not the long-horizon winner: simple stratified random rotation reaches +0.40 on all three seeds with lower mean unseen loss than the frozen basis and lower loss than Q-span on the paired +0.40 seeds. The next hypothesis is temporal/history-dependent coverage rather than one privileged static or instantaneous basis."
+}
