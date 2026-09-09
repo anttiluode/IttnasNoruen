@@ -70,7 +70,9 @@ def run_digits(seed: int, steps: int = 24) -> dict:
                 model_examples+=1
                 return float(probabilities(theta,x[index:index+1])[0,y[index]])
             meter=ResponseMeter(response,max_calls=15000)
-            guard=BehavioralUpdateGuard(max_references=10,trust_radius=.2)
+            # Historical exact-tangent comparator; new access tests use bounds.
+            guard=BehavioralUpdateGuard(max_references=10,trust_radius=.2,
+                                         projection_mode="equalities")
             theta=zero.copy()
             for q in range(10):
                 guard.remember(q,meter(theta,q),tolerance=.01)
