@@ -1,0 +1,56 @@
+name: Gate 14 local law vs dynamic basis
+
+on:
+  pull_request:
+    paths:
+      - 'gate14_local_law.py'
+      - 'test_gate14_local_law.py'
+      - 'GATE14_PROTOCOL.md'
+      - '.github/workflows/gate14_full.yml'
+  workflow_dispatch:
+
+jobs:
+  full-gate14:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -r requirements-examples.txt
+      - name: Unit tests
+        run: python -m pytest -q test_gate14_local_law.py
+      - name: Run preregistered three-seed Gate 14
+        run: python gate14_local_law.py --output /tmp/gate14.json
+      - name: Print audit summary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/gate14.json'))
+          print('checks', r['checks'])
+          print('pass', r['pass'])
+          for s in r['specimens']:
+              print('\nSEED', s['seed'])
+              for run in s['runs']:
+                  print(run['method'],
+                        'progress=', round(run['actual_progress'],6),
+                        'calls=', run['calls'],
+                        'stop=', run['stop_reason'],
+                        'checkpoints=', len(run['checkpoints']),
+                        'seen_loss=', run['final']['seen']['loss_rate_among_initially_correct'],
+                        'unseen_loss=', run['final']['unseen']['loss_rate_among_initially_correct'],
+                        'bases=', run['distinct_bases'],
+                        'overlap_frozen=', run['mean_overlap_frozen'],
+                        'local_ratio=', run['max_local_tolerance_ratio'])
+          print('\nPAIRED A - B')
+          for row in r['paired']:
+              print(row)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gate14-receipt
+          path: /tmp/gate14.json
