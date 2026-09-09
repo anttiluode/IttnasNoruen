@@ -1,0 +1,90 @@
+{
+  "gate": 12,
+  "status": "static_basis_action_preserved_but_not_sufficient",
+  "source_run_id": 34371630452,
+  "source_head": "c8766d03a421f7b6175a461063af3c815aab42d3",
+  "artifact_id": 10112168031,
+  "raw_receipt_sha256": "33a98967169dd7ccc9488e2f985e299cf633e973a646947c77d8d2bfeeb060d6",
+  "artifact_zip_sha256": "49e459a598cafe554b4954cf6f8cb422742a9ae38dac1c13dbf7f513306e2726",
+  "checks": {
+    "accepted_basis_contracts_validated": true,
+    "bounded_pool": true,
+    "callback_budgets": true,
+    "final_basis_within_tolerance": true,
+    "frozen_basis_capacity": true,
+    "measured_progress": true,
+    "qspan_stratified": true
+  },
+  "protocol": {
+    "seeds": [293, 307, 331],
+    "checkpoints": [0.05, 0.1, 0.2, 0.4],
+    "attempts": 24,
+    "budget": 45000,
+    "stored_records": 60,
+    "active_basis": 20,
+    "adjustable_parameters": 24,
+    "signature_probes": 12,
+    "signature_eps": 0.03,
+    "equal_relative_tolerance": 0.05,
+    "equal_absolute_tolerance": 0.002
+  },
+  "qspan_basis_checkpoint_max_tolerance_ratios": {
+    "293": {"0.05": 0.000014919561624109927},
+    "307": {
+      "0.05": 9.491046837339923e-09,
+      "0.10": 4.315019259594443e-09,
+      "0.20": 5.802483493688726e-08
+    },
+    "331": {
+      "0.05": 2.8002598177835624e-07,
+      "0.10": 0.0025643698934051033,
+      "0.20": 0.0023439318827335326,
+      "0.40": 0.0006539160242297407
+    }
+  },
+  "matched_qspan_equal_minus_boundary_equal": {
+    "0.05": {
+      "coverage": 3,
+      "paired_seeds": [293, 307, 331],
+      "seen_loss_difference": 0.0000014680780108872308,
+      "unseen_loss_difference": -0.003428744785274184,
+      "call_difference": -714.0
+    },
+    "0.10": {
+      "coverage": 2,
+      "paired_seeds": [307, 331],
+      "seen_loss_difference": 0.0010515108752978271,
+      "unseen_loss_difference": 0.001191167343997118,
+      "call_difference": -1102.5
+    },
+    "0.20": {
+      "coverage": 2,
+      "paired_seeds": [307, 331],
+      "seen_loss_difference": -0.001053703807258824,
+      "unseen_loss_difference": 0.0025374867370022616,
+      "call_difference": -4956.0
+    }
+  },
+  "matched_qspan_equal_minus_qspan_scanned": {
+    "0.05": {
+      "coverage": 2,
+      "paired_seeds": [307, 331],
+      "seen_loss_difference": 0.0015761698469662431,
+      "unseen_loss_difference": 0.004033953274208725,
+      "call_difference": 2616.0
+    },
+    "0.10": {
+      "coverage": 2,
+      "paired_seeds": [307, 331],
+      "seen_loss_difference": 0.0026254877903030736,
+      "unseen_loss_difference": 0.0070218814438149394,
+      "call_difference": 3927.0
+    }
+  },
+  "basis_overlap_qspan_vs_boundary": {
+    "293": 17,
+    "307": 17,
+    "331": 18
+  },
+  "interpretation": "Measured response geometry appears locally informative at the first +0.05 checkpoint, where qspan_equal has a modest mean unseen-loss advantage over boundary_equal, but that advantage does not persist. More importantly, Q-span basis responses can be preserved almost exactly while unseen cue access deteriorates substantially. Therefore a fixed scalar-response basis at theta_0 is not sufficient to represent the old capability in this nonlinear learner. The next test should condition and re-estimate the basis on the current state and proposed write before each atomic update, with pre-write freezing to prevent retrospective target drift."
+}
