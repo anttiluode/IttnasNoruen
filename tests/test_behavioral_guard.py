@@ -29,7 +29,7 @@ def test_curvature_can_make_zero_first_order_harm_unsafe():
     original=np.zeros(2)
     result=guard.step(original,"new",1.,ResponseMeter(response,100))
     assert result.status=="no_acceptable_step_observed"
-    assert result.rejected_candidates==6
+    assert result.rejected_candidates>=6
     assert np.array_equal(result.parameters,original)
 
 

@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-09",
+  "base_commit": "87effd94fbb8ecef1e784e6355b5534ed41a8183",
+  "context_only_kompressori_commit": "7cca26e6677e2f6ee6351f320555102baf7bd8f9",
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scikit_learn": "1.8.0",
+    "scipy": "1.17.0"
+  },
+  "completed_commands": [
+    "python -m pytest -q",
+    "python gate9_selected_replay.py --output results/gate9_selected_replay.json",
+    "python report_selected_replay.py",
+    "python audit_replay_boundary.py > results/gate9_boundary_audit.txt"
+  ],
+  "local_tests": "35 passed",
+  "initial_run": {
+    "receipt": "results/gate9_initial_projection.json",
+    "algorithm": "original projection, before measured nonlinear corrections existed",
+    "outcome_reproduction": "python gate9_selected_replay.py --model-corrections 0 --output /tmp/gate9_initial_reproduced.json",
+    "notes": "Current code adds protocol metadata and final parameters absent from the original receipt; outcome reproduction does not imply byte-identical JSON."
+  },
+  "notes": [
+    "The selection protocol was written before outcomes. The two-correction numerical repair followed inspection of the initial failure; both receipts are retained.",
+    "The data, seeds, cue pool, selectors, budgets and checkpoint rules were unchanged between initial and corrected runs.",
+    "The independent SLSQP audit is experimenter-only; the learner uses measured responses and NumPy projection.",
+    "Gate 8 and the response-geometry reference explicitly disable the new corrections to retain their historical algorithms. Earlier provenance hashes refer to their historical sources.",
+    "Scalar callback budgets are equal caps, not equal computational work. Each method separately reports model-example evaluations.",
+    "Kompressori and fluid-equation results are context, not experimental validation of this learner."
+  ],
+  "sha256": {
+    "behavioral_guard.py": "9bd3c7916cc3710e9aec6fc2e84b9c266cf43ee848685411eb94d1c443414394",
+    "gate9_selected_replay.py": "96f6be62db96bc7bb067a0b555b99a07991a5308cf396b1db138b62cab5d260b",
+    "audit_replay_boundary.py": "255e70370a7a909bc17e332b5559d6bd920bd700dffdea2cc7637bb898192655",
+    "report_selected_replay.py": "fc54955d754f8f037c794b5d73f041fd443db674d1c051aed617d510403d6724",
+    "GATE9_PROTOCOL.md": "d872cf117f09cfb97c89ef5fcaaa353248649020230d31b8c016c89754e38ba8",
+    "GATE9_FINDINGS.md": "43903071e88b57db872223a0d8a2eaa0886ea1ac0ce6eef6bd06c297af74e0bd",
+    "SELECTED_REPLAY_RESULTS.md": "ecf3e588f9c9f906093823a466c1c9efde6abe359bbbce694a42d751e4f53600",
+    "tests/test_nonlinear_restoration.py": "0d7106e1797e6c3dee5792896b6e77fe7194b9a0cb6c98038b3c5d50eda80201",
+    "tests/test_selected_replay.py": "5b2d12ee28e26460c35b7133310ba16b1cd9bb78b3b38ff06896a1017c56292e",
+    "results/gate9_initial_projection.json": "47ffaf0c65b441c5bc36f47f7ae849b8b9a349d26b36b0c5084b36c62ec77434",
+    "results/gate9_selected_replay.json": "eae3f00b71d05135c46250aec4557877a08f8c1ea01de5712ce26ca939465b55",
+    "results/gate9_boundary_audit.txt": "32d4ab8d7934e00129541ee5169b8e46c29ca032fd5ece57e880d108479e002a"
+  }
+}

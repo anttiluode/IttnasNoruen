@@ -1,0 +1,6 @@
+current 0.021034493341210325 Dykstra {'norm': 0.2642891484041006, 'linear_violation': 9.18709552877317e-15, 'new_progress': 0.05019378185358825, 'actual_old_violation': 0.027449170102833237}
+SLSQP True Optimization terminated successfully {'norm': 0.2642891484041021, 'linear_violation': 3.122502256758253e-17, 'new_progress': 0.05019378185358825, 'actual_old_violation': 0.027449170102824466}
+scaled 1.0 {'norm': 0.2642891484041021, 'linear_violation': 3.122502256758253e-17, 'new_progress': 0.05019378185358825, 'actual_old_violation': 0.027449170102824466}
+scaled 0.5 {'norm': 0.13214457420205106, 'linear_violation': 0.01448275332939486, 'new_progress': 0.03554508350681729, 'actual_old_violation': 0.0071393944046176105}
+scaled 0.25 {'norm': 0.06607228710102553, 'linear_violation': 0.02172412999409229, 'new_progress': 0.028279265785925878, 'actual_old_violation': 0.0016202621737530787}
+scaled 0.125 {'norm': 0.033036143550512764, 'linear_violation': 0.025344818326441004, 'new_progress': 0.02465552450889552, 'actual_old_violation': 0.00017342034087550195}

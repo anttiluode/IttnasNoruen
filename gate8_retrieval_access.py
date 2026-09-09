@@ -230,7 +230,8 @@ def run_specimen(seed, *, steps=12, budget=45000):
                 p = world.encoded_probabilities(theta, encoded[query])
                 return float(margins(p, [bank[query]["label"]])[0])
             guard = BehavioralUpdateGuard(20, trust_radius=.5,
-                                           projection_mode="equalities" if method=="exact_full" else "bounds")
+                                           projection_mode="equalities" if method=="exact_full" else "bounds",
+                                           max_model_corrections=0)  # frozen Gate 8 protocol
             for q, record in enumerate(bank):
                 if method == "exact_full":
                     guard.remember(q, record["baseline_margin"], 1e-4)

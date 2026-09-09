@@ -7,11 +7,12 @@ benchmark, a coupled nonlinear propagation test, and a real-data classifier exam
 It measures which proposed changes can be justified by a bounded record of prior
 behavior, including the cases where that record is insufficient.
 
-Start with [partial-cue access results](ACCESS_RESULTS.md), the
+Start with [Gate 9 findings](GATE9_FINDINGS.md) and [matched-progress results](SELECTED_REPLAY_RESULTS.md),
+then [partial-cue access results](ACCESS_RESULTS.md), the
 [Gate 8 protocol](RETRIEVAL_ACCESS.md), [earlier results](RESULTS.md), and the
 [higher-level interpretation](HIGHER_LEVEL.md).
 
-The latest experiment asks whether a system preserves **the ability to reach an
+Gate 8 asks whether a system preserves **the ability to reach an
 answer from an incomplete cue**. Full-cue correctness can survive while an old
 fragment cue fails. Another fragment may still work with all weights frozen.
 That does not ensure that the retrieval policy will try it: our confidence policy
@@ -22,6 +23,13 @@ The [Kompressori bridge](KOMPRESSORI_BRIDGE.md) adds an executable reference:
 two old answers can remain exactly unchanged while nearby input sensitivity rises
 ninefold. Measured neighboring probes expose the change, at a cost in memory,
 queries and permitted new-task progress.
+
+**Gate 9 now chooses replay according to measured damage from a temporary update.**
+It has not established an advantage on unseen cue access. The experiment did expose
+a different failure: a first-order preserving step can leave a curved acceptable
+region. Measured nonlinear compensation fixes a precise counterexample and improves
+protected task progress, without relaxing the original response bounds. Initial
+failures, the post-outcome correction and the final comparisons are all retained.
 
 ## What runs
 
@@ -34,6 +42,7 @@ queries and permitted new-task progress.
 | [Gate 7](gate7_measured_transfer.py) | scalar measurements guide updates of a coupled nonlinear tree | external software observer with temporary candidate evaluation |
 | [Digits transfer](digits_transfer.py) | the same guard changes a trained classifier on real handwritten data | ten anchors do not characterize the whole recognition skill |
 | [Gate 8](gate8_retrieval_access.py) | partial cues, retrieval policy, inequality contracts and bounded extra capacity | supplied cue routes; no growth benefit established |
+| [Gate 9](gate9_selected_replay.py) | measured replay selection at matched progress; correction of finite nonlinear candidate errors | no established unseen-access advantage; external labeled cue pool |
 
 The continuous proposal method reduces interference in the reference stream.
 The nonlinear test exposes the limits of trusting a tangent for a finite change.
@@ -69,6 +78,11 @@ including a one-sided classification margin. Exact output preservation is often
 stricter than preserving a useful answer. Gate 7 and the first digits receipt keep
 the legacy `projection_mode="equalities"` explicitly.
 
+After a rejected nonlinear candidate, the default guard can use its measured model
+error to correct the temporary proposal (at most two corrections per backtrack).
+Every correction is queried and charged. `max_model_corrections=0` retains the
+original behavior; Gate 8 and its response-geometry reference use that setting.
+
 In deterministic software, accepted candidates have passed the retained response
 checks. Rejection or budget exhaustion returns the original parameters.
 This does not certify unseen inputs, unmodeled drift or noisy future trials.
@@ -96,6 +110,8 @@ python digits_transfer.py --output results/digits_transfer.json
 python report_results.py
 python gate8_retrieval_access.py --output results/gate8_retrieval_access.json
 python report_access_results.py
+python gate9_selected_replay.py --output results/gate9_selected_replay.json
+python report_selected_replay.py
 ```
 
 CI runs historical gates, new core benchmarks, tests, and a short real-data smoke
@@ -125,6 +141,12 @@ boundaries loses fewer individual cue routes while completing less of the new
 objective. Added capacity costs more measurements without improving average new
 contrast accuracy in this receipt. These remain limits, not success requirements
 that the benchmark was tuned to satisfy.
+
+Gate 9 compares informed selection with fixed, random and full-pool guards. It
+reports exact reached checkpoints rather than comparing protection at unequal
+learning. Informed selection's first matched checkpoint shows no unseen-access
+benefit, and later comparisons have limited coverage. See the
+[recorded audit and mechanism correction](GATE9_FINDINGS.md).
 
 ## Research boundary and lineage
 

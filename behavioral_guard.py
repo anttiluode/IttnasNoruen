@@ -162,7 +162,7 @@ class BehavioralUpdateGuard:
 
     def __init__(self, max_references: int, *, fd_step: float = 1e-4,
                  trust_radius: float = 0.2, max_backtracks: int = 8,
-                 projection_mode: str = "bounds"):
+                 projection_mode: str = "bounds", max_model_corrections: int = 2):
         if max_references < 1 or fd_step <= 0 or trust_radius <= 0 or max_backtracks < 0:
             raise ValueError("invalid guard budget or step size")
         self.max_references = int(max_references)
@@ -172,6 +172,9 @@ class BehavioralUpdateGuard:
         if projection_mode not in ("bounds", "equalities"):
             raise ValueError("projection_mode must be bounds or equalities")
         self.projection_mode = projection_mode
+        if max_model_corrections < 0:
+            raise ValueError("model correction count must be nonnegative")
+        self.max_model_corrections = int(max_model_corrections)
         self.references: list[Reference] = []
 
     def remember(self, query: Hashable, response: float, tolerance: float):
@@ -278,10 +281,11 @@ class BehavioralUpdateGuard:
                 step = repair_component + (0.5**backtrack)*(proposal-repair_component)
                 if protect and self.projection_mode == "bounds":
                     desired_effect = before*(0.5**backtrack)
+                    linear_lower = np.r_[np.array([r.lower for r in self.references])-current[:-1],desired_effect]
+                    linear_upper = np.r_[np.array([r.upper for r in self.references])-current[:-1],desired_effect]
                     step = project_response_bounds(
                         step, sensitivities,
-                        np.r_[np.array([r.lower for r in self.references])-current[:-1],desired_effect],
-                        np.r_[np.array([r.upper for r in self.references])-current[:-1],desired_effect],
+                        linear_lower, linear_upper,
                         self.trust_radius)
                     if np.linalg.norm(step) < 1e-10:
                         return finish("no_feasible_step_observed")
@@ -299,6 +303,26 @@ class BehavioralUpdateGuard:
                     return finish("accepted", candidate, after, float(max(errors, default=0.)),
                                   float(max(violations,default=0.)))
                 rejected += 1
+                # A tangent step can follow the boundary while the actual response
+                # curves outside it. Correct its measured model error at the SAME
+                # current parameters; every corrected trial is measured and charged.
+                # This shifts the local model, never the retained response contract.
+                if protect and validate and self.projection_mode == "bounds":
+                    for _ in range(self.max_model_corrections):
+                        model_error = observed-current-sensitivities@step
+                        step = project_response_bounds(
+                            step,sensitivities,linear_lower-model_error,
+                            linear_upper-model_error,self.trust_radius)
+                        candidate = theta+step
+                        observed = np.array([meter(candidate,q) for q in queries])
+                        errors = np.abs(observed[:-1]-np.array([r.response for r in self.references]))
+                        violations = [max(0.,r.lower-value,value-r.upper)
+                                      for r,value in zip(self.references,observed[:-1])]
+                        after = float(target-observed[-1])
+                        if abs(after)<abs(before)-1e-12 and all(v<=1e-12 for v in violations):
+                            return finish("accepted",candidate,after,float(max(errors,default=0.)),
+                                          float(max(violations,default=0.)))
+                        rejected += 1
             return finish("no_acceptable_step_observed")
         except MeasurementBudgetExceeded:
             return finish("measurement_budget_exhausted")
