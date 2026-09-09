@@ -1,0 +1,55 @@
+name: Gate 11 full operator fingerprint panel
+
+on:
+  pull_request:
+    paths:
+      - 'gate11_operator_guard.py'
+      - 'test_gate11_operator_guard.py'
+      - 'GATE11_PROTOCOL.md'
+      - '.github/workflows/gate11_full.yml'
+  workflow_dispatch:
+
+jobs:
+  full-gate11:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -r requirements-examples.txt
+      - name: Unit tests
+        run: python -m pytest -q test_gate11_operator_guard.py
+      - name: Run preregistered three-seed Gate 11
+        run: python gate11_operator_guard.py --output /tmp/gate11.json
+      - name: Print audit summary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/gate11.json'))
+          print('checks', r['checks'])
+          print('pass', r['pass'])
+          for s in r['specimens']:
+              print('\nSEED', s['seed'])
+              for run in s['runs']:
+                  fp=run.get('fingerprint') or {}
+                  print(run['method'],
+                        'progress=', round(run['actual_progress'],6),
+                        'calls=', run['calls'],
+                        'stop=', run['stop_reason'],
+                        'checkpoints=', len(run['checkpoints']),
+                        'seen_loss=', run['final']['seen']['loss_rate_among_initially_correct'],
+                        'unseen_loss=', run['final']['unseen']['loss_rate_among_initially_correct'],
+                        'fp_ratio=', fp.get('max_tolerance_ratio'))
+          print('\nPAIRED operator_guard - comparator (negative loss difference favors operator guard)')
+          for row in r['paired']:
+              print(row)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gate11-receipt
+          path: /tmp/gate11.json
