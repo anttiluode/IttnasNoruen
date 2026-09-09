@@ -1,0 +1,83 @@
+{
+  "gate": 11,
+  "status": "static_operator_fingerprint_preserved_but_behavioral_hypothesis_failed",
+  "source_run_id": 34370992870,
+  "source_head": "d1a53dafa5e27ece7d0ee681a2ae3367b3734da3",
+  "artifact_id": 10111922276,
+  "raw_receipt_sha256": "decb92d863012c7c5ef9015d2738e6f99681502ff7c47d4e5842b90ccdedc757",
+  "artifact_zip_sha256": "b10298c7bc68734ad19db4429aba0a5e238eebd21f9ba0e6d97b29dfaaada9a7",
+  "checks": {
+    "bounded_pool": true,
+    "callback_budgets": true,
+    "measured_progress": true,
+    "frozen_modes_present": true,
+    "operator_contracts_validated": true,
+    "final_operator_fingerprint_within_tolerance": true
+  },
+  "protocol": {
+    "seeds": [251, 263, 277],
+    "checkpoints": [0.05, 0.1, 0.2, 0.4],
+    "attempts": 24,
+    "budget": 45000,
+    "stored_records": 60,
+    "adjustable_parameters": 24,
+    "signature_probes": 12,
+    "signature_eps": 0.03,
+    "fingerprint_relative_tolerance": 0.15,
+    "fingerprint_absolute_tolerance": 0.0005,
+    "operator_references": 22,
+    "anchor_references": 10
+  },
+  "per_seed": [
+    {
+      "seed": 251,
+      "anchor_progress": 0.26347831902522323,
+      "anchor_calls": 17997,
+      "anchor_final_unseen_loss": 0.024509803921568627,
+      "anchor_fingerprint_ratio": 21.244012051997906,
+      "operator_progress": 0.12608658031940712,
+      "operator_calls": 45000,
+      "operator_final_unseen_loss": 0.012254901960784314,
+      "operator_fingerprint_ratio": 1.0000000000026337
+    },
+    {
+      "seed": 263,
+      "anchor_progress": 0.1119261741642048,
+      "anchor_calls": 16974,
+      "anchor_final_unseen_loss": 0.0,
+      "anchor_fingerprint_ratio": 2.9349001134936237,
+      "operator_progress": 0.07683213068340455,
+      "operator_calls": 45000,
+      "operator_final_unseen_loss": 0.0,
+      "operator_fingerprint_ratio": 1.0000000000002105
+    },
+    {
+      "seed": 277,
+      "anchor_progress": 0.029264765053837127,
+      "anchor_calls": 18382,
+      "anchor_final_unseen_loss": 0.0021321961620469083,
+      "anchor_fingerprint_ratio": 0.46360504939877656,
+      "operator_progress": 0.024913581240971316,
+      "operator_calls": 45000,
+      "operator_final_unseen_loss": 0.0021321961620469083,
+      "operator_fingerprint_ratio": 0.37823581789789157
+    }
+  ],
+  "matched_operator_minus_anchor": {
+    "0.05": {
+      "coverage": 2,
+      "paired_seeds": [251, 263],
+      "seen_loss_difference": 0.0,
+      "unseen_loss_difference": 0.0012254901960784314,
+      "call_difference": 2429.5
+    },
+    "0.10": {
+      "coverage": 1,
+      "paired_seeds": [251],
+      "seen_loss_difference": 0.0010319917440660474,
+      "unseen_loss_difference": 0.004901960784313725,
+      "call_difference": 17575.0
+    }
+  },
+  "interpretation": "The frozen singular-mode response fingerprint was successfully enforced and changed the learning path, but it did not improve held-out unseen cue preservation at matched progress and consumed substantial measurement budget. The Gate-10 signature is a parameter-sensitivity sketch, not the actual candidate-change action HQB. The next cleaner test is to use the measured geometry only to identify a basis and preserve actual basis responses as two-sided near-equalities."
+}
