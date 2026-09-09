@@ -1,0 +1,38 @@
+{
+  "status": "mathematical_counterexample_not_an_empirical_transfer_result",
+  "formula": "f_k(q)=q+k*q*(q-1)",
+  "epsilon": 0.02,
+  "outcomes": {
+    "anchors_only": {
+      "status": "accepted",
+      "material": 7.999999999991999,
+      "new_answer_before": 0.5,
+      "new_answer_after": -1.4999999999979998,
+      "max_anchor_drift": 0.0,
+      "max_nearby_drift": 0.16319999999983703,
+      "maximum_absolute_anchor_slope": 8.999999999992,
+      "retained_queries": 2,
+      "scalar_calls": 14,
+      "scalar_budget": 200
+    },
+    "anchors_and_nearby": {
+      "status": "accepted",
+      "material": 0.24999999999974998,
+      "new_answer_before": 0.5,
+      "new_answer_after": 0.4375000000000625,
+      "max_anchor_drift": 0.0,
+      "max_nearby_drift": 0.005099999999994997,
+      "maximum_absolute_anchor_slope": 1.24999999999975,
+      "retained_queries": 6,
+      "scalar_calls": 69,
+      "scalar_budget": 200
+    }
+  },
+  "checks": {
+    "exact_answers_can_hide_changed_sensitivity": true,
+    "nearby_contract_limits_the_change": true,
+    "limited_new_progress": true
+  },
+  "pass": true,
+  "limitation": "Nearby probes bound only their measured responses. This does not certify all input directions, nonlinear stability, or a compressed Jacobian. More protection permits less of this conflicting task."
+}

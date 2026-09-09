@@ -22,6 +22,49 @@ class Reference:
     query: Hashable
     response: float
     tolerance: float
+    minimum: float | None = None
+    maximum: float | None = None
+
+    @property
+    def lower(self):
+        return self.response-self.tolerance if self.minimum is None else self.minimum
+
+    @property
+    def upper(self):
+        return self.response+self.tolerance if self.maximum is None else self.maximum
+
+
+def project_response_bounds(proposal, rows, lower, upper, radius, *, cycles=400):
+    """Dykstra projection onto measured response slabs and a parameter norm ball.
+
+    This is a bounded numerical search, not an infeasibility certificate. The
+    caller must validate finite candidate responses. Correction workspace is
+    (M+1)*N scalars in addition to the measured M*N rows.
+    """
+    z = np.asarray(proposal, dtype=float).copy()
+    rows = np.asarray(rows, dtype=float).reshape(-1, z.size)
+    lower, upper = np.asarray(lower), np.asarray(upper)
+    corrections = np.zeros((len(rows)+1, len(z)))
+    norm2 = np.einsum('ij,ij->i', rows, rows)
+    for _ in range(cycles):
+        previous = z.copy()
+        for i, row in enumerate(rows):
+            y = z + corrections[i]
+            if norm2[i] > 1e-24:
+                value = float(row@y)
+                z = y + row*((np.clip(value,lower[i],upper[i])-value)/norm2[i])
+            else:
+                z = y
+            corrections[i] = y-z
+        y = z + corrections[-1]
+        z = y*min(1., radius/max(float(np.linalg.norm(y)),1e-30))
+        corrections[-1] = y-z
+        values = rows@z
+        feasible = (np.all(values >= lower-1e-14) and
+                    np.all(values <= upper+1e-14))
+        if feasible and np.linalg.norm(z-previous) <= 1e-14:
+            break
+    return z
 
 
 class ResponseMeter:
@@ -106,6 +149,7 @@ class UpdateDecision:
     max_reference_drift: float | None
     step_norm: float
     rejected_candidates: int
+    max_constraint_violation: float | None = None
 
 
 class BehavioralUpdateGuard:
@@ -117,13 +161,17 @@ class BehavioralUpdateGuard:
     """
 
     def __init__(self, max_references: int, *, fd_step: float = 1e-4,
-                 trust_radius: float = 0.2, max_backtracks: int = 8):
+                 trust_radius: float = 0.2, max_backtracks: int = 8,
+                 projection_mode: str = "bounds"):
         if max_references < 1 or fd_step <= 0 or trust_radius <= 0 or max_backtracks < 0:
             raise ValueError("invalid guard budget or step size")
         self.max_references = int(max_references)
         self.fd_step = float(fd_step)
         self.trust_radius = float(trust_radius)
         self.max_backtracks = int(max_backtracks)
+        if projection_mode not in ("bounds", "equalities"):
+            raise ValueError("projection_mode must be bounds or equalities")
+        self.projection_mode = projection_mode
         self.references: list[Reference] = []
 
     def remember(self, query: Hashable, response: float, tolerance: float):
@@ -134,6 +182,26 @@ class BehavioralUpdateGuard:
         if any(item.query == query for item in self.references):
             raise ValueError("duplicate protected query")
         self.references.append(Reference(query, float(response), float(tolerance)))
+
+    def remember_range(self, query: Hashable, *, minimum=-np.inf, maximum=np.inf):
+        """Protect an acceptable interval, including a one-sided task margin.
+
+        The task supplies these limits. The guard cannot infer their importance.
+        """
+        if self.projection_mode != "bounds":
+            raise ValueError("interval contracts require bounds mode")
+        if len(self.references) >= self.max_references:
+            raise OverflowError("protected response memory is full")
+        if (np.isnan(minimum) or np.isnan(maximum) or minimum > maximum or
+                minimum == np.inf or maximum == -np.inf or
+                (not np.isfinite(minimum) and not np.isfinite(maximum))):
+            raise ValueError("a nonempty interval with at least one finite bound is required")
+        if any(r.query == query for r in self.references):
+            raise ValueError("duplicate protected query")
+        anchor = (minimum+maximum)/2 if np.isfinite(minimum+maximum) else (
+            minimum if np.isfinite(minimum) else maximum)
+        self.references.append(Reference(query,float(anchor),float('inf'),
+                                         float(minimum),float(maximum)))
 
     def step(self, parameters: np.ndarray, query: Hashable, target: float,
              meter: ResponseMeter, *, protect: bool = True,
@@ -152,15 +220,18 @@ class BehavioralUpdateGuard:
         before = None
         rejected = 0
 
-        def finish(status, value=None, error_after=None, drift=None):
+        def finish(status, value=None, error_after=None, drift=None, violation=None):
             result = theta if value is None else value
             return UpdateDecision(result.copy(), status, meter.calls-start, before,
-                                  error_after, drift, float(np.linalg.norm(result-theta)), rejected)
+                                  error_after, drift, float(np.linalg.norm(result-theta)), rejected,
+                                  violation)
 
         try:
             current = np.array([meter(theta, q) for q in queries])
             before = float(target-current[-1])
-            if abs(before) < 1e-8:
+            current_safe = all(r.lower <= value <= r.upper
+                               for r,value in zip(self.references,current[:-1]))
+            if abs(before) < 1e-8 and current_safe:
                 return finish("target_met", error_after=before)
             # Column-wise perturbations: no inverse model or supplied Jacobian.
             sensitivities = np.empty((len(queries), theta.size))
@@ -176,7 +247,7 @@ class BehavioralUpdateGuard:
                 return finish("no_observed_target_sensitivity")
             proposal = before * new_row / norm2
             repair_component = np.zeros_like(theta)
-            if protect:
+            if protect and self.projection_mode == "equalities":
                 rhs = np.array([r.response for r in self.references])-current[:-1]
                 repair = orthogonal_replay_projection(np.zeros_like(theta), sensitivities[:-1], rhs)
                 free = orthogonal_replay_projection(new_row, sensitivities[:-1], np.zeros_like(rhs))
@@ -204,15 +275,29 @@ class BehavioralUpdateGuard:
                 return finish("no_feasible_step_observed")
             proposal *= min(1., self.trust_radius/size)
             for backtrack in range(self.max_backtracks+1):
-                candidate = theta + repair_component + (0.5**backtrack)*(proposal-repair_component)
+                step = repair_component + (0.5**backtrack)*(proposal-repair_component)
+                if protect and self.projection_mode == "bounds":
+                    desired_effect = before*(0.5**backtrack)
+                    step = project_response_bounds(
+                        step, sensitivities,
+                        np.r_[np.array([r.lower for r in self.references])-current[:-1],desired_effect],
+                        np.r_[np.array([r.upper for r in self.references])-current[:-1],desired_effect],
+                        self.trust_radius)
+                    if np.linalg.norm(step) < 1e-10:
+                        return finish("no_feasible_step_observed")
+                candidate = theta + step
                 # These are actual callback responses, not predictions from the tangent.
                 observed = np.array([meter(candidate, q) for q in queries])
                 errors = np.abs(observed[:-1]-np.array([r.response for r in self.references]))
-                safe = all(err <= r.tolerance for err, r in zip(errors, self.references))
+                violations = [max(0.,r.lower-value,value-r.upper)
+                              for r,value in zip(self.references,observed[:-1])]
+                # Only floating-point comparison slack; it is not a task tolerance.
+                safe = all(v <= 1e-12 for v in violations)
                 after = float(target-observed[-1])
                 improves = abs(after) < abs(before)-1e-12
                 if improves and (safe or not validate):
-                    return finish("accepted", candidate, after, float(max(errors, default=0.)))
+                    return finish("accepted", candidate, after, float(max(errors, default=0.)),
+                                  float(max(violations,default=0.)))
                 rejected += 1
             return finish("no_acceptable_step_observed")
         except MeasurementBudgetExceeded:

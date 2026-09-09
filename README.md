@@ -7,8 +7,21 @@ benchmark, a coupled nonlinear propagation test, and a real-data classifier exam
 It measures which proposed changes can be justified by a bounded record of prior
 behavior, including the cases where that record is insufficient.
 
-Start with [results and limitations](RESULTS.md) and the
+Start with [partial-cue access results](ACCESS_RESULTS.md), the
+[Gate 8 protocol](RETRIEVAL_ACCESS.md), [earlier results](RESULTS.md), and the
 [higher-level interpretation](HIGHER_LEVEL.md).
+
+The latest experiment asks whether a system preserves **the ability to reach an
+answer from an incomplete cue**. Full-cue correctness can survive while an old
+fragment cue fails. Another fragment may still work with all weights frozen.
+That does not ensure that the retrieval policy will try it: our confidence policy
+often stops at a confidently wrong answer. Bounded growth is implemented as a
+candidate mechanism, but it was not needed or triggered in the three runs.
+
+The [Kompressori bridge](KOMPRESSORI_BRIDGE.md) adds an executable reference:
+two old answers can remain exactly unchanged while nearby input sensitivity rises
+ninefold. Measured neighboring probes expose the change, at a cost in memory,
+queries and permitted new-task progress.
 
 ## What runs
 
@@ -20,6 +33,7 @@ Start with [results and limitations](RESULTS.md) and the
 | [Gate 6](gate6_continuous_learning.py) | commands, external activity, echo learning, bounded delayed receipts, bounded replay, writes and reversal together | digital action windows and local gain model |
 | [Gate 7](gate7_measured_transfer.py) | scalar measurements guide updates of a coupled nonlinear tree | external software observer with temporary candidate evaluation |
 | [Digits transfer](digits_transfer.py) | the same guard changes a trained classifier on real handwritten data | ten anchors do not characterize the whole recognition skill |
+| [Gate 8](gate8_retrieval_access.py) | partial cues, retrieval policy, inequality contracts and bounded extra capacity | supplied cue routes; no growth benefit established |
 
 The continuous proposal method reduces interference in the reference stream.
 The nonlinear test exposes the limits of trusting a tangent for a finite change.
@@ -49,6 +63,12 @@ parameters = decision.parameters
 print(decision.status, decision.calls)
 ```
 
+The default guard uses the allowed response tolerances during proposal formation.
+Use `remember_range(query, minimum=..., maximum=...)` for acceptable intervals,
+including a one-sided classification margin. Exact output preservation is often
+stricter than preserving a useful answer. Gate 7 and the first digits receipt keep
+the legacy `projection_mode="equalities"` explicitly.
+
 In deterministic software, accepted candidates have passed the retained response
 checks. Rejection or budget exhaustion returns the original parameters.
 This does not certify unseen inputs, unmodeled drift or noisy future trials.
@@ -64,6 +84,7 @@ python -m pip install -r requirements.txt
 python -m pytest -q
 python gate6_continuous_learning.py --output results/gate6_continuous.json
 python gate7_measured_transfer.py --output results/gate7_transfer.json
+python response_geometry_reference.py --output results/response_geometry_reference.json
 ```
 
 The classifier example uses handwritten digits bundled with scikit-learn; it
@@ -73,6 +94,8 @@ does not download a pretrained model or an external dataset:
 python -m pip install -r requirements-examples.txt
 python digits_transfer.py --output results/digits_transfer.json
 python report_results.py
+python gate8_retrieval_access.py --output results/gate8_retrieval_access.json
+python report_access_results.py
 ```
 
 CI runs historical gates, new core benchmarks, tests, and a short real-data smoke
@@ -96,6 +119,13 @@ The next major limitation is **reference coverage**: a finite bank can miss usef
 behavior even when every stored answer is preserved. That is now measured on
 unseen inputs.
 
+Gate 8 extends this to **access coverage** and **search policy**. Its mixed-cue bank
+does not outperform ordinary adaptation here. A bank chosen near classification
+boundaries loses fewer individual cue routes while completing less of the new
+objective. Added capacity costs more measurements without improving average new
+contrast accuracy in this receipt. These remain limits, not success requirements
+that the benchmark was tuned to satisfy.
+
 ## Research boundary and lineage
 
 The projection principle is established in Kaczmarz methods, Gradient Episodic
@@ -109,6 +139,7 @@ an update. A continuous **coupled** substrate with physically justified predicti
 and coordination pathways remains unfinished.
 
 - [SighImageSuper](https://github.com/anttiluode/SighImageSuper): persistence, interrogation and self/world confounds.
+- [Kompressori](https://github.com/anttiluode/Kompressori): a preserved trajectory can still respond differently to the next perturbation.
 - [GeometricNeuronOriginReview](https://github.com/anttiluode/GeometricNeuronOriginReview): spatial measurement inside nonlinear feedback.
 - [Active Dendrite](https://github.com/anttiluode/OperaattoriAktiivinenDendriitti): choosing measurements that expose hidden distinctions.
 - [Operaattori](https://github.com/anttiluode/Operaattori): morphology-shaped propagation and geometry sensitivities.

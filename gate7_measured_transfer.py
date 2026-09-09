@@ -48,7 +48,9 @@ def run_transfer(seed: int, method: str, *, steps: int = 30) -> dict:
     world = NonlinearArbor(seed)
     theta = np.zeros(12)
     meter = ResponseMeter(world.response, max_calls=5000)
-    guard = BehavioralUpdateGuard(max_references=4, trust_radius=.35)
+    # Preserve the historical Gate-7 comparator and its published receipt.
+    guard = BehavioralUpdateGuard(max_references=4, trust_radius=.35,
+                                   projection_mode="equalities")
     for q in range(4):
         guard.remember(q,meter(theta,q),tolerance=.001)
     heldout_before = np.array([world.response(theta,q) for q in range(5,9)])

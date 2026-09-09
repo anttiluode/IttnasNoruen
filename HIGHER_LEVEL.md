@@ -61,9 +61,17 @@ change becomes slow structure. It is a numerical construction, not evidence that
 dendrites implement the same circuit.
 
 Nearly parallel constraints make a fixed number of cyclic projections slow. The
-general software guard therefore orthogonalizes its bounded measured sketch. This
+historical exact-projection guard therefore orthogonalizes its measured sketch. This
 adds central arithmetic and basis storage. It is not described as purely local
 plasticity.
+
+Gate 8 corrects an overly strong interpretation of preservation. When old answers
+may move within tolerances, the acceptable update set is a collection of slabs,
+not necessarily a null space. For a classification task, keeping a positive margin
+can matter more than keeping a probability unchanged. The default software guard
+now projects onto measured intervals and a trust ball before actual evaluation.
+The zero-nullspace impossibility claim applies to independent *equality* constraints;
+nonzero tolerances can leave room for improvement even at full rank.
 
 ## A tangent is not a certificate for a finite nonlinear update
 
@@ -102,6 +110,20 @@ an intervention that reveals a currently hidden distinction, now a distinction
 between acceptable and damaging updates.
 
 ## Status and prior work
+
+The [retrieval-access experiment](RETRIEVAL_ACCESS.md) adds another distinction:
+agreement on a complete question does not imply preserved access from fragments.
+Nor does access through an alternative imply a search policy will request it.
+Formally the useful object includes a cue-generating/search policy `pi`, a query
+budget `B`, and a context distribution, not just the stored response `f_theta(q)`.
+Preservation should eventually be measured on the success of that entire bounded
+interaction. Current Gate 8 supplies the cue types and tests a fixed confidence
+policy, leaving cue construction and policy learning open.
+
+Structure, current state and query policy can each affect access. The frozen-model
+control shows a route can work without a new structural change in this classifier.
+It neither rules out useful structural growth nor explains human recall. Bounded
+growth is implemented, but did not activate in the published task.
 
 This repository now contains an executable continuous integration benchmark, a
 portable software guard, a nonlinear propagation test, and a real-data classifier
