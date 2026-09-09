@@ -1,0 +1,42 @@
+name: Gate 10 full panel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  full-gate10:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -r requirements-examples.txt
+      - name: Run frozen three-seed Gate 10
+        run: python gate10_q_coverage.py --output /tmp/gate10.json
+      - name: Print audit summary
+        run: |
+          python - <<'PY'
+          import json
+          r=json.load(open('/tmp/gate10.json'))
+          print('checks', r['checks'])
+          for s in r['specimens']:
+              print('\nSEED', s['seed'])
+              for run in s['runs']:
+                  first = run['trajectory'][0].get('signature_geometry') if run['trajectory'] else None
+                  print(run['method'], 'progress=', round(run['actual_progress'],6),
+                        'calls=', run['calls'], 'stop=', run['stop_reason'],
+                        'checkpoints=', len(run['checkpoints']),
+                        'first_geometry=', first)
+          print('\nPAIRED')
+          for row in r['paired']:
+              print(row)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gate10-receipt
+          path: /tmp/gate10.json
