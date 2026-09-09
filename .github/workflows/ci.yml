@@ -40,3 +40,5 @@ jobs:
         run: python digits_transfer.py --seeds 71 --steps 4 --output /tmp/digits.json
       - name: Run partial-cue access smoke check
         run: python gate8_retrieval_access.py --seeds 113 --steps 2 --budget 12000 --output /tmp/access.json
+      - name: Run selected replay smoke check
+        run: python gate9_selected_replay.py --seeds 151 --checkpoints 0.05 --attempts 2 --budget 12000 --output /tmp/selected.json

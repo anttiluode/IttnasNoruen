@@ -20,7 +20,7 @@ def run_reference():
     for method in ("anchors_only", "anchors_and_nearby"):
         initial = np.zeros(1)
         meter = ResponseMeter(response, 200)
-        guard = BehavioralUpdateGuard(6, trust_radius=10.)
+        guard = BehavioralUpdateGuard(6, trust_radius=10.,max_model_corrections=0)
         for q in (0., 1.):
             guard.remember(q, meter(initial,q), 1e-8)
         if method == "anchors_and_nearby":

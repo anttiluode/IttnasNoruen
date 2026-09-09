@@ -103,11 +103,20 @@ The handwritten-digit experiment measures this gap explicitly. Anchor preservati
 average held-out accuracy and worst held-out response drift are separate metrics.
 Good averages can conceal large changes to individual answers.
 
-Consequently, a next useful mechanism would allocate the replay budget to questions
-that reveal likely interference. It should be tested against fixed and random banks
-under the same total observations. This is the link back to Active Dendrite: choose
+Gate 9 allocates replay to questions that reveal likely interference and compares
+it with fixed and random selection under an explicit scalar-call cap, also reporting
+the unequal model-example costs. It has not established a held-out access advantage.
+This is the link back to Active Dendrite: choose
 an intervention that reveals a currently hidden distinction, now a distinction
 between acceptable and damaging updates.
+
+The experiment also exposes a local-versus-finite distinction in parameter space.
+For the contract `b-a*a >= 0` at zero, a linear model permits increasing `a` alone,
+although every such finite write violates the contract. Correcting `b` by `a*a`
+provides a feasible write. The software guard now uses observed candidate model
+error to shift its local prediction, reproject and recheck. This is central nonlinear
+compensation with counted queries, not an additional permission to alter the old
+contract. It does not certify global feasibility, convergence or unmeasured behavior.
 
 ## Status and prior work
 
