@@ -1,0 +1,102 @@
+{
+  "gate": 10,
+  "status": "geometry_improved_behavioral_advantage_not_demonstrated",
+  "source_run_id": 34368355530,
+  "source_head": "4f787395fb34a81fd3f36e9d1eeada2c7ad019ae",
+  "raw_receipt_sha256": "f7879f5dc3affa5c2360ec144ced9fdc9f35f8d11738ce48150c4809344f3649",
+  "artifact_zip_sha256": "4ce668cf7c954109253c872747cf1d23f5e4380e523da0850ba00fa9b8a11f2a",
+  "checks": {
+    "callback_budgets": true,
+    "bounded_pool": true,
+    "selected_contracts": true,
+    "measured_progress": true,
+    "active_capacity": true,
+    "shared_signature_protocol": true,
+    "qspan_stratified": true
+  },
+  "protocol": {
+    "seeds": [211, 223, 239],
+    "checkpoints": [0.05, 0.1, 0.2, 0.4],
+    "attempts": 24,
+    "budget": 45000,
+    "stored_records": 60,
+    "active_references": 20,
+    "adjustable_parameters": 24,
+    "signature_probes": 12,
+    "signature_eps": 0.03,
+    "signature_definition": "margin(theta+eps*d_k)-margin(theta)",
+    "selection_objective": "stratified greedy logdet of measured signature Gram matrix"
+  },
+  "first_scan_condition_numbers": {
+    "random_scanned": [178.00463378633142, 413.2605340207006, 42.06997541223636],
+    "boundary_scanned": [21.03629613538118, 25.51323255543954, 8.007627021914296],
+    "interference_scanned": [201.59800005047853, 176.8719105550143, 42.93353968180569],
+    "qspan_scanned": [19.643620348288806, 20.84732976301445, 9.847026444054505]
+  },
+  "mean_first_scan_condition": {
+    "random_scanned": 211.1117144064228,
+    "boundary_scanned": 18.18571857091167,
+    "interference_scanned": 140.46781676243285,
+    "qspan_scanned": 16.779325518452588
+  },
+  "mean_first_scan_logdet": {
+    "random_scanned": -95.55597801906202,
+    "boundary_scanned": -72.38174451116406,
+    "interference_scanned": -91.44694090723375,
+    "qspan_scanned": -71.63910059153999
+  },
+  "per_seed_qspan": [
+    {
+      "seed": 211,
+      "actual_progress": 0.21249998060085007,
+      "calls": 14441,
+      "stop_reason": "no_acceptable_step_observed",
+      "checkpoint_count": 3,
+      "final_seen_loss": 0.0020768431983385254,
+      "final_unseen_loss": 0.015730337078651686,
+      "first_condition": 19.643620348288806,
+      "first_min_singular": 0.009887536647202629
+    },
+    {
+      "seed": 223,
+      "actual_progress": 0.3159642676028733,
+      "calls": 45000,
+      "stop_reason": "measurement_budget_exhausted",
+      "checkpoint_count": 3,
+      "final_seen_loss": 0.012591815320041973,
+      "final_unseen_loss": 0.037815126050420166,
+      "first_condition": 20.84732976301445,
+      "first_min_singular": 0.008296396108001782
+    },
+    {
+      "seed": 239,
+      "actual_progress": 0.399999999999868,
+      "calls": 15583,
+      "stop_reason": "all_checkpoints_reached",
+      "checkpoint_count": 4,
+      "final_seen_loss": 0.010548523206751054,
+      "final_unseen_loss": 0.01366742596810934,
+      "first_condition": 9.847026444054505,
+      "first_min_singular": 0.015413791055794948
+    }
+  ],
+  "matched_progress_qspan_minus_interference": {
+    "0.05": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.10": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.20": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.40": {"coverage": 1, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0}
+  },
+  "matched_progress_qspan_minus_boundary": {
+    "0.05": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.10": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.20": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.40": {"coverage": 1, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0}
+  },
+  "matched_progress_qspan_minus_random": {
+    "0.05": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.0},
+    "0.10": {"coverage": 3, "seen_loss_difference": 0.0, "unseen_loss_difference": 0.000749063670411985},
+    "0.20": {"coverage": 3, "seen_loss_difference": -0.0003516174402250352, "unseen_loss_difference": 0.0007593014426727409},
+    "0.40": {"coverage": 1, "seen_loss_difference": 0.0010548523206751047, "unseen_loss_difference": 0.0022779043280182227}
+  },
+  "interpretation": "The D-optimal Q-span selector substantially improves conditioning of the measured cue-response signature bank, but when the selected cues are subsequently used only as ordinary pointwise inequality constraints, the improved geometry does not improve held-out cue preservation. Different banks often collapse to the same accepted update path. The next test should protect a measured basis/operator fingerprint directly rather than only selecting examples from that basis."
+}
