@@ -42,3 +42,5 @@ jobs:
         run: python gate8_retrieval_access.py --seeds 113 --steps 2 --budget 12000 --output /tmp/access.json
       - name: Run selected replay smoke check
         run: python gate9_selected_replay.py --seeds 151 --checkpoints 0.05 --attempts 2 --budget 12000 --output /tmp/selected.json
+      - name: Run Q-coverage replay smoke check
+        run: python gate10_q_coverage.py --seeds 211 --checkpoints 0.05 --attempts 2 --budget 16000 --signature-probes 6 --output /tmp/qcoverage.json
