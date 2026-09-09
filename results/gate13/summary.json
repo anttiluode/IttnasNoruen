@@ -1,0 +1,28 @@
+{
+  "gate": 13,
+  "status": "rolling_local_protection_helped_write_conditioning_only_early",
+  "source_run_id": 34373316487,
+  "source_head": "dc7d951378a31fae46bdb42b8c47b0a939ff864d",
+  "artifact_id": 10112838734,
+  "raw_receipt_sha256": "ce22efba20520e2746f4f587ffa5f5a05f4ef06b6fab4dedaa7703cfe68a283b",
+  "artifact_zip_sha256": "43af90aab158f0a3438b2397fe879d7ca563ee0feaca438cef97223dae45418a",
+  "checks_passed": true,
+  "seeds": [347, 359, 373],
+  "matched_write_minus_current": {
+    "0.05": {"coverage": 3, "unseen_loss_difference": -0.0006752575235011441, "seen_loss_difference": 0.0007066939197233833, "call_difference": 626.6666666666666},
+    "0.10": {"coverage": 3, "unseen_loss_difference": -0.004275964954737268, "seen_loss_difference": 0.0, "call_difference": -626.6666666666666},
+    "0.20": {"coverage": 2, "unseen_loss_difference": 0.0, "seen_loss_difference": 0.0025857957378541845, "call_difference": 4805.0},
+    "0.40": {"coverage": 1, "unseen_loss_difference": 0.0, "seen_loss_difference": 0.003138075313807531, "call_difference": 5745.0}
+  },
+  "matched_write_minus_static": {
+    "0.05": {"coverage": 3, "unseen_loss_difference": -0.014060252906045062},
+    "0.10": {"coverage": 2, "unseen_loss_difference": -0.01909652003688664},
+    "0.20": {"coverage": 2, "unseen_loss_difference": -0.02424325767258255},
+    "0.40": {"coverage": 1, "unseen_loss_difference": -0.04203539823008849}
+  },
+  "distinct_bases": {
+    "rolling_current_equal": [13, 23, 23],
+    "rolling_write_equal": [16, 23, 23]
+  },
+  "interpretation": "Rolling current-state local protection substantially outperformed the globally frozen theta_0 basis in these runs. Explicit proposed-write conditioning produced only a small early advantage over generic rolling current-state geometry and no advantage at later paired checkpoints. Because rolling methods also re-anchor responses to the current pre-write values, Gate 13 does not isolate basis reselection from local re-anchoring; the next gate should add a frozen-basis plus rolling-anchor control."
+}
